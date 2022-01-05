@@ -43,6 +43,6 @@ properties:
   id_contact:
     type: string
     maxLength: 100
-    description: 'Contact ID assocaition with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings]()'
+    description: 'Contact ID assocaition with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
 required:
   - default_email
