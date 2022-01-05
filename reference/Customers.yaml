@@ -197,7 +197,7 @@ components:
       in: header
       description: API Gateway Merchant Authorization.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
     applicationKey:
-      name: vyalynk-api-id
+      name: vyalynk-app-id
       type: apiKey
       in: header
       description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
