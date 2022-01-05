@@ -78,6 +78,9 @@ paths:
         description: ''
       parameters: []
       description: Create a contact
+      security:
+        - jwt: []
+        - clientKey: []
     patch:
       summary: Patch a Contact by ID
       tags:
@@ -219,4 +222,3 @@ security:
   - jwt: []
   - applicationKey: []
     clientKey: []
-  
