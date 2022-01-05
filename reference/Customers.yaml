@@ -67,7 +67,7 @@ paths:
       security:
         - jwt: []
         - clientKey: []
-        - applicationKey: []
+          applicationKey: []
     post:
       summary: Create a new Contact
       tags:
