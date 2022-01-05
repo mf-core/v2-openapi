@@ -64,10 +64,6 @@ paths:
           name: display_name
           description: Fetch records containing the specified display name value
           allowEmptyValue: true
-      security:
-        - jwt: []
-        - clientKey: []
-          applicationKey: []
     post:
       summary: Create a new Contact
       tags:
@@ -219,3 +215,6 @@ components:
         example: 10852b2b2f57480696e5a4e918b26cc1
         default: 10852b2b2f57480696e5a4e918b26cc1
       description: Client/Merchant authorization key issued by service provider
+security:
+  - clientKey: []
+    applicationKey: []
