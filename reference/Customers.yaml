@@ -65,7 +65,6 @@ paths:
           description: Fetch records containing the specified display name value
           allowEmptyValue: true
       security:
-        - jwt: []
         - clientKey: []
           applicationKey: []
     post:
