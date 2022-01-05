@@ -216,6 +216,7 @@ components:
         default: 10852b2b2f57480696e5a4e918b26cc1
       description: Client/Merchant authorization key issued by service provider
 security:
+  - jwt: []
   - applicationKey: []
     clientKey: []
-  - jwt: []
+  
