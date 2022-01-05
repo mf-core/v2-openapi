@@ -1,0 +1,36 @@
+title: Phone
+type: object
+x-tags:
+  - Phone
+  - Common
+properties:
+  name:
+    type: string
+    example: Primary phone
+    description: Descriptive name for phone
+  country_code:
+    type: string
+    example: '+1'
+    description: '[Country calling code](https://en.wikipedia.org/wiki/List_of_country_calling_codes), no spaces'
+  number:
+    type:
+      - string
+      - integer
+    example: 4212786391
+    maxLength: 10
+    minLength: 10
+    maximum: 9999999999
+    minimum: 1111111111
+    description: 'Area and dialing code.  WHole number string or integer accepted.  No spaces, dashes or special characters'
+  type:
+    type: string
+    enum:
+      - MOBILE
+      - OFFICE
+      - FAX
+      - SMS
+      - OTHER
+    example: MOBILE
+    description: Phone type
+required:
+  - number

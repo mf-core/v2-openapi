@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Authentication",
+      "uri": "docs/Authentication.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    }
+  ]
+}

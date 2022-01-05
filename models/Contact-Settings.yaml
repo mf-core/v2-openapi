@@ -1,0 +1,8 @@
+title: Contact Settings
+type: object
+x-tags:
+  - CONTACT
+  - SETTINGS
+properties:
+  id:
+    type: string

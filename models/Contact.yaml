@@ -1,0 +1,48 @@
+type: object
+title: Contact
+x-tags:
+  - Customer
+description: Customer model used to generate a system contact or company record
+additionalProperties: false
+examples:
+  - first_name: Marvin
+    last_name: Johnson
+    display_name: Marvin Johnson
+    default_email:
+      name: Primary email
+      address: marvin@example.com
+      type: PERSONAL
+    default_phone:
+      name: Primary phone
+      country_code: '+1'
+      number: 4212786391
+      type: MOBILE
+    avatar: 'https://avatars.dicebear.com/api/initials/marvin%20johnson.svg'
+properties:
+  first_name:
+    type: string
+    description: Contact first name.  Required if `display_name` is not provided in request
+    example: Marvin
+  last_name:
+    type: string
+    description: Contact last name.  Required if `display_name` is not provided in request
+    example: Johnson
+  display_name:
+    type: string
+    example: Marvin Johnson
+    description: Contact display name.  Required if both `first_name` and `last_name` values are not provided with request
+  default_email:
+    $ref: ./Email.yaml
+  default_phone:
+    $ref: ./Phone.yaml
+  avatar:
+    type: string
+    format: uri
+    example: 'https://avatars.dicebear.com/api/initials/marvin%20johnson.svg'
+    description: URL to contact avatar or image
+  id_contact:
+    type: string
+    maxLength: 100
+    description: 'Contact ID assocaition with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings]()'
+required:
+  - default_email

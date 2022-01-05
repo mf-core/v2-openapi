@@ -1,0 +1,8 @@
+title: Company Settings
+type: object
+x-tags:
+  - COMPANY
+  - SETTINGS
+properties:
+  id:
+    type: string

@@ -1,0 +1,5 @@
+title: Discounts
+type: object
+properties:
+  id:
+    type: string
