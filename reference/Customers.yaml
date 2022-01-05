@@ -24,7 +24,6 @@ paths:
     get:
       summary: Fetch Contacts
       tags:
-        - CUSTOMERS
         - CONTACTS
       responses:
         '200':
@@ -68,7 +67,6 @@ paths:
     post:
       summary: Create a new Contact
       tags:
-        - CUSTOMERS
         - CONTACTS
       responses: {}
       operationId: post-contacts
@@ -78,21 +76,17 @@ paths:
             schema:
               $ref: '#/components/schemas/Contacts'
         description: ''
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/x-client-key'
+      parameters: []
       description: Create a contact
     patch:
       summary: Patch a Contact by ID
       tags:
-        - CUSTOMERS
         - CONTACTS
       responses: {}
       operationId: patch-contacts
     delete:
       summary: Remove a Contact
       tags:
-        - CUSTOMERS
         - CONTACTS
       responses: {}
       operationId: delete-contacts
@@ -101,28 +95,24 @@ paths:
     post:
       summary: Create new Company
       tags:
-        - CUSTOMERS
         - COMPANIES
       responses: {}
       operationId: post-companies
     patch:
       summary: Patch Company by ID
       tags:
-        - CUSTOMERS
         - COMPANIES
       responses: {}
       operationId: patch-companies
     delete:
       summary: Remove Company By ID
       tags:
-        - CUSTOMERS
         - COMPANIES
       responses: {}
       operationId: delete-companies
     get:
       summary: Fetch Company
       tags:
-        - CUSTOMERS
         - COMPANIES
       responses: {}
       operationId: get-companies
