@@ -22,6 +22,11 @@ properties:
     maximum: 9999999999
     minimum: 1111111111
     description: 'Area and dialing code.  WHole number string or integer accepted.  No spaces, dashes or special characters'
+  extension:
+    type: string
+    example: '233'
+    maxLength: 10
+    description: Phone extension
   type:
     type: string
     enum:
@@ -29,8 +34,10 @@ properties:
       - OFFICE
       - FAX
       - SMS
+      - LANDLINE
       - OTHER
-    example: MOBILE
+    example: LANDLINE
     description: Phone type
 required:
   - number
+description: Phone number object

@@ -1,7 +1,8 @@
 type: object
 title: Contact
 x-tags:
-  - Customer
+  - CONTACT
+  - CUSTOMER
 description: Customer model used to generate a system contact or company record
 additionalProperties: false
 examples:
@@ -32,9 +33,9 @@ properties:
     example: Marvin Johnson
     description: Contact display name.  Required if both `first_name` and `last_name` values are not provided with request
   default_email:
-    $ref: ./Email.yaml
+    $ref: ./Emails.yaml
   default_phone:
-    $ref: ./Phone.yaml
+    $ref: ./Phones.yaml
   avatar:
     type: string
     format: uri
@@ -43,6 +44,14 @@ properties:
   id_contact:
     type: string
     maxLength: 100
-    description: 'Contact ID assocaition with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+    description: 'Contact ID association with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+    example: C9348208238
+  id_account:
+    type: string
+    example: ACCT-3092381239838
+    maxLength: 100
+    description: 'Account ID association with external systems.  If not provided will default to a sequential `id_account` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+  online:
+    $ref: ./Online.yaml
 required:
   - default_email

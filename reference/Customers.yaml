@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Customers
+  version: '1.0'
+  summary: Customers consist of contacts and companies
+  description: 'Create, fetch, list, patch and remove contacts and companies'
+  contact:
+    name: Russ Palermo
+    url: Base.do
+    email: rjpalermo@Live.com
+servers:
+  - url: 'http://localhost:3030'
+    description: Dev Server
+paths:
+  '/contacts/{contact_id}':
+    get:
+      summary: Fetch Contact by ID
+      tags:
+        - CUSTOMERS
+        - CONTACTS
+      responses: {}
+      operationId: get-contacts
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+        description: ''
+      security: []
+    post:
+      summary: Create a new Contact
+      tags:
+        - CUSTOMERS
+        - CONTACTS
+      responses: {}
+      operationId: post-contacts
+    patch:
+      summary: Patch a Contact by ID
+      tags:
+        - CUSTOMERS
+        - CONTACTS
+      responses: {}
+      operationId: patch-contacts
+    delete:
+      summary: Remove a Contact
+      tags:
+        - CUSTOMERS
+        - CONTACTS
+      responses: {}
+      operationId: delete-contacts
+    parameters:
+      - schema:
+          type: string
+        name: contact_id
+        in: path
+        description: 'Optional:  Fetch by contact ID (starts with `contact-`)'
+  /companies:
+    post:
+      summary: Create new Company
+      tags:
+        - CUSTOMERS
+        - COMPANIES
+      responses: {}
+      operationId: post-companies
+    patch:
+      summary: Patch Company by ID
+      tags:
+        - CUSTOMERS
+        - COMPANIES
+      responses: {}
+      operationId: patch-companies
+    delete:
+      summary: Remove Company By ID
+      tags:
+        - CUSTOMERS
+        - COMPANIES
+      responses: {}
+      operationId: delete-companies
+    get:
+      summary: Fetch Company
+      tags:
+        - CUSTOMERS
+        - COMPANIES
+      responses: {}
+      operationId: get-companies
+components:
+  schemas:
+    Header-VyaPay-Direct:
+      description: ''
+      type: object
+      x-examples:
+        example-1:
+          x-api-key: T6554252567241061980
+          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
+      examples:
+        - x-api-key: T6554252567241061980
+          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
+        - x-api-key: T6554252567241061980
+          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
+      properties:
+        x-api-key:
+          type: string
+          minLength: 1
+          default: T6554252567241061980
+          example: T6554252567241061980
+          description: API Server Application Authentication Key
+        x-client-key:
+          type: string
+          minLength: 1
+          example: 10852b2b2f57480696e5a4e918b26cc1
+          default: 10852b2b2f57480696e5a4e918b26cc1
+          description: API Server Merchant Authorization Key
+      required:
+        - x-api-key
+        - x-client-key
+      x-internal: true
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      description: JWT token received from User Login
+    clientKey:
+      name: vyalynk-client-id
+      type: apiKey
+      in: header
+      description: API Gateway Merchant Authorization.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
+    applicationKey:
+      name: vyalynk-api-id
+      type: apiKey
+      in: header
+      description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
+security:
+  - jwt: []
+  - clientKey: []
+    applicationKey: []

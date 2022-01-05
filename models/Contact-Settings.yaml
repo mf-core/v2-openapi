@@ -6,3 +6,6 @@ x-tags:
 properties:
   id:
     type: string
+description: 'Default Settings applied to [Contacts](./Contacts.yaml)'
+examples:
+  - id: string
