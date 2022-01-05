@@ -37,8 +37,6 @@ paths:
       operationId: get-contacts
       description: 'Fetch a single contact by providing the system contact id as a path parameter.  For example: `../contacts/contact-42123124344598437`.  Alternatively, you can fetch a single contact by adding the system contact id or any other unique value as an query paramter `id` value.'
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/x-client-key'
         - schema:
             type: string
             example: contact-1242342121392
@@ -67,7 +65,6 @@ paths:
           name: display_name
           description: Fetch records containing the specified display name value
           allowEmptyValue: true
-      security: []
     post:
       summary: Create a new Contact
       tags:
@@ -228,3 +225,6 @@ components:
         example: 10852b2b2f57480696e5a4e918b26cc1
         default: 10852b2b2f57480696e5a4e918b26cc1
       description: Client/Merchant authorization key issued by service provider
+security:
+  - applicationKey: []
+  - clientKey: []
