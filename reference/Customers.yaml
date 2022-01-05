@@ -10,24 +10,63 @@ info:
     email: rjpalermo@Live.com
 servers:
   - url: 'http://localhost:3030'
-    description: Dev Server
+    description: Development
+  - url: 'http://v2-customers-app.dev.vyapay.com'
+    description: Staging (API Server)
+  - url: 'http://v2-customers-app.vyapay.com'
+    description: Production (API Server)
+  - url: 'http://test-api.vyapay.com'
+    description: Test (API Gateway)
+  - url: 'http://api.vyapay.com'
+    description: Production (API Gateway)
 paths:
-  '/contacts/{contact_id}':
+  /contacts:
     get:
-      summary: Fetch Contact by ID
+      summary: Fetch Contacts
       tags:
         - CUSTOMERS
         - CONTACTS
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: get-contacts
-      description: ''
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ''
-        description: ''
+      description: 'Fetch a single contact by providing the system contact id as a path parameter.  For example: `../contacts/contact-42123124344598437`.  Alternatively, you can fetch a single contact by adding the system contact id or any other unique value as an query paramter `id` value.'
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/x-client-key'
+        - schema:
+            type: string
+            example: contact-1242342121392
+          in: query
+          name: id
+          description: Fetch record by system row record identifier.  Starts with `contact-`
+          allowEmptyValue: true
+        - schema:
+            type: string
+            example: Marvin
+          in: query
+          name: first_name
+          description: Fetch records containing the specified first name value
+          allowEmptyValue: true
+        - schema:
+            type: string
+            example: Johnson
+          in: query
+          name: last_name
+          description: Fetch records containing the specified last name
+          allowEmptyValue: true
+        - schema:
+            type: string
+            example: Marvin Johnson
+          in: query
+          name: display_name
+          description: Fetch records containing the specified display name value
+          allowEmptyValue: true
       security: []
     post:
       summary: Create a new Contact
@@ -36,6 +75,16 @@ paths:
         - CONTACTS
       responses: {}
       operationId: post-contacts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contacts'
+        description: ''
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/x-client-key'
+      description: Create a contact
     patch:
       summary: Patch a Contact by ID
       tags:
@@ -50,12 +99,7 @@ paths:
         - CONTACTS
       responses: {}
       operationId: delete-contacts
-    parameters:
-      - schema:
-          type: string
-        name: contact_id
-        in: path
-        description: 'Optional:  Fetch by contact ID (starts with `contact-`)'
+    parameters: []
   /companies:
     post:
       summary: Create new Company
@@ -87,35 +131,71 @@ paths:
       operationId: get-companies
 components:
   schemas:
-    Header-VyaPay-Direct:
-      description: ''
+    Contacts:
+      title: Contacts
       type: object
-      x-examples:
-        example-1:
-          x-api-key: T6554252567241061980
-          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
       examples:
-        - x-api-key: T6554252567241061980
-          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
-        - x-api-key: T6554252567241061980
-          x-client-key: 10852b2b2f57480696e5a4e918b26cc1
+        - first_name: Marvin
+          last_name: Johnson
+          display_name: Marvin Johnson
+          default_email:
+            name: Primary email
+            address: marvin@example.com
+            type: PERSONAL
+          default_phone:
+            name: Primary phone
+            country_code: '+1'
+            number: 4212786391
+            extension: '233'
+            type: LANDLINE
+          avatar: 'https://avatars.dicebear.com/api/initials/marvin%20johnson.svg'
+          id_contact: C9348208238
+          id_account: ACCT-3092381239838
+          online:
+            website: 'https://website.com'
+            blog: 'https://blog.website.com'
+            facebook: 'https://www.facebook.com/id'
+            twitter: 'http://www.twitter.com/username'
+            pinterest: 'http://www.pinterest.com/username'
+            instagram: 'https://www.instagram.com/username'
+            linkedin: 'http://www.linkedin.com/in/username.'
       properties:
-        x-api-key:
+        first_name:
           type: string
-          minLength: 1
-          default: T6554252567241061980
-          example: T6554252567241061980
-          description: API Server Application Authentication Key
-        x-client-key:
+          description: Contact first name.  Required if `display_name` is not provided in request
+          example: Marvin
+        last_name:
           type: string
-          minLength: 1
-          example: 10852b2b2f57480696e5a4e918b26cc1
-          default: 10852b2b2f57480696e5a4e918b26cc1
-          description: API Server Merchant Authorization Key
+          description: Contact last name.  Required if `display_name` is not provided in request
+          example: Johnson
+        display_name:
+          type: string
+          example: Marvin Johnson
+          description: Contact display name.  Required if both `first_name` and `last_name` values are not provided with request
+        default_email:
+          $ref: ../models/Emails.yaml
+        default_phone:
+          $ref: ../models/Phones.yaml
+        avatar:
+          type: string
+          format: uri
+          example: 'https://avatars.dicebear.com/api/initials/marvin%20johnson.svg'
+          description: URL to contact avatar or image
+        id_contact:
+          type: string
+          maxLength: 100
+          description: 'Contact ID association with external systems.  Must be unique.  If not provided will default to a sequential `id_contact` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+          example: C9348208238
+        id_account:
+          type: string
+          example: ACCT-3092381239838
+          maxLength: 100
+          description: 'Account ID association with external systems.  If not provided will default to a sequential `id_account` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+        online:
+          $ref: ../models/Online.yaml
       required:
-        - x-api-key
-        - x-client-key
-      x-internal: true
+        - default_email
+      description: Contact object model
   securitySchemes:
     jwt:
       type: http
@@ -131,7 +211,20 @@ components:
       type: apiKey
       in: header
       description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
-security:
-  - jwt: []
-  - clientKey: []
-    applicationKey: []
+  parameters:
+    x-api-key:
+      name: x-api-key
+      in: header
+      schema:
+        type: string
+        default: T6554252567241061980
+        example: T6554252567241061980
+      description: Application authentication key issued by service provider
+    x-client-key:
+      name: x-client-key
+      in: header
+      schema:
+        type: string
+        example: 10852b2b2f57480696e5a4e918b26cc1
+        default: 10852b2b2f57480696e5a4e918b26cc1
+      description: Client/Merchant authorization key issued by service provider
