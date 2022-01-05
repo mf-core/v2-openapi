@@ -217,4 +217,4 @@ components:
       description: Client/Merchant authorization key issued by service provider
 security:
   - clientKey: []
-  - applicationKey: []
+    applicationKey: []
