@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Customers
   version: '1.0'
-  summary: Customers consist of contacts and companies
+  summary: Customer management endpoints
   description: |-
     Create and manage customers.  A customer can be a contact or a company with the following distinctions:
 
@@ -29,7 +29,7 @@ servers:
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
 paths:
-  /contacts:
+  '/contacts/{contact_id}':
     get:
       summary: Fetch Contacts
       tags:
@@ -95,12 +95,27 @@ paths:
       responses: {}
       operationId: patch-contacts
     delete:
-      summary: Remove a Contact
+      summary: Archive a Contact
       tags:
         - CONTACTS
       responses: {}
       operationId: delete-contacts
-    parameters: []
+      description: |-
+        Soft delete/archive a system contact record.  A "soft delete" sets a `deleted_at` field with a  timestamp and will not remove the contact record permanantly in order to maintain data integriety and associations with other records in the system.  
+
+        All records with a `deleted_at` value are excluded from normal REST requests and system processing.
+
+        * You can fetch an archived contact ...
+        * Setting an archived contact's `deleted_at` value to null will....
+    parameters:
+      - schema:
+          type: string
+          example: contact-38479923312388
+          maxLength: 100
+        name: contact_id
+        in: path
+        required: true
+        description: The contact system record identifier (starts with `contct-`)
   /companies:
     post:
       summary: Create new Company
