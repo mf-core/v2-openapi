@@ -23,17 +23,12 @@ paths:
   /invoices/templates:
     get:
       summary: List or Fetch Invoice Template by ID
-      tags: []
+      tags:
+        - Templates
       responses: {}
       operationId: get-invoices-templates
       description: List Invoice Templates
       parameters:
-        - schema:
-            type: string
-            example: template-34ju3294743jdb23
-          in: query
-          name: id
-          description: Invoice Template ID (starts with `template`)
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/description'
     post:
