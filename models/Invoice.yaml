@@ -1,0 +1,16 @@
+title: Invoice
+type: object
+description: ''
+properties:
+  name:
+    type: string
+    example: Test Invoice Template 1
+    description: A descriptive name to identify the invoice in lists and queries
+  description:
+    type: string
+    description: 'Invoice description to display in lists, queries and optionally in customer emails and forms'
+  memo:
+    type: string
+    example: Your invoice is currently due
+required:
+  - name
