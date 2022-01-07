@@ -3,8 +3,7 @@ info:
   title: Invoices
   version: '1.0'
   summary: Invoice management endpoints
-  description: |-
-    Create and manage invoices.
+  description: Create and manage invoices.
   contact:
     name: Russ Palermo
     url: Base.do
@@ -20,7 +19,38 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-paths: {}
+paths:
+  /invoices/templates:
+    get:
+      summary: List or Fetch Invoice Template by ID
+      tags: []
+      responses: {}
+      operationId: get-invoices-templates
+      description: List Invoice Templates
+      parameters:
+        - schema:
+            type: string
+            example: template-34ju3294743jdb23
+          in: query
+          name: id
+          description: Invoice Template ID (starts with `template`)
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/description'
+    post:
+      summary: Create Invoice Template
+      tags: []
+      responses: {}
+      operationId: post-invoices-templates
+    patch:
+      summary: Patch Invoice Template
+      tags: []
+      responses: {}
+      operationId: patch-invoices-templates
+    delete:
+      summary: Remove Invoice Template
+      tags: []
+      responses: {}
+      operationId: delete-invoices-templates
 components:
   schemas: {}
   securitySchemes:
@@ -38,6 +68,66 @@ components:
       type: apiKey
       in: header
       description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
+  parameters:
+    name:
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+        example: Invoice Template 1
+      description: Invoice template name
+    description:
+      name: description
+      in: query
+      required: false
+      schema:
+        type: string
+        example: Custom template for ACME Industries
+      description: Invoice template description
+    id_prefix:
+      name: id_prefix
+      in: query
+      required: false
+      schema:
+        type: string
+        example: ACME-1234
+      description: Invoice ID prefix
+    id_suffix:
+      name: id_suffix
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Invoice ID suffix
+    cart_id:
+      name: cart_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for cart associated with Invoice Template (starts with `cart-`
+    allow_partial_payment:
+      name: allow_partial_payment
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Invoice Template partial payments enabled
+    allow_customer_notes:
+      name: allow_customer_notes
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Invoice Template customer notes enabled
+    allow_customer_portal:
+      name: allow_customer_portal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Invoice Template customer portal enabled
 security:
   - jwt: []
   - applicationKey: []
