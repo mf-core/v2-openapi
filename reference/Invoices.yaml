@@ -27,10 +27,23 @@ paths:
         - Templates
       responses: {}
       operationId: get-invoices-templates
-      description: List Invoice Templates
+      description: |
+        1. To list all Invoice Templates associated with merchant account execute request without any additional query paramters
+        2.  To fetch an Invoice Template by ID provide the template id (starts with _template-_) as an `invoice_template_id` value.
+
+        | EXPAND AVAILABLE VALUES | DESCRIPTION |
+        | :-- | :-- |
+        | mid | Expand and return the associated `mid_id` as a **mid** object |
+        | contact | Expand and return the associated `contact_id` as a **contact** object |
+        | company| Expand and return the associated `company_id` as a **company** object |
+        | customer| Expand and return the associated `contact_id` or `company_id` as a **customer** object |
+        | cart| Expand and return the associated `cart_id` as a **cart** object |
       parameters:
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/description'
+        - $ref: '#/components/parameters/invoice_template_id'
+        - $ref: '#/components/parameters/mid_id'
+        - $ref: '#/components/parameters/contact_id'
+        - $ref: '#/components/parameters/company_id'
+        - $ref: '#/components/parameters/cart_id'
     post:
       summary: Create Invoice Template
       tags: []
@@ -96,7 +109,7 @@ components:
       schema:
         type: string
         example: Invoice Template 1
-      description: Invoice template name
+      description: name
     description:
       name: description
       in: query
@@ -104,7 +117,7 @@ components:
       schema:
         type: string
         example: Custom template for ACME Industries
-      description: Invoice template description
+      description: Description
     id_prefix:
       name: id_prefix
       in: query
@@ -112,42 +125,105 @@ components:
       schema:
         type: string
         example: ACME-1234
-      description: Invoice ID prefix
+      description: ID prefix
     id_suffix:
       name: id_suffix
       in: query
       required: false
       schema:
         type: string
-      description: Invoice ID suffix
+      description: ID suffix
     cart_id:
       name: cart_id
       in: query
       required: false
       schema:
         type: string
-      description: System identifier for cart associated with Invoice Template (starts with `cart-`
+      description: System identifier for cart (starts with `cart-`)
     allow_partial_payment:
       name: allow_partial_payment
       in: query
       required: false
       schema:
         type: boolean
-      description: Invoice Template partial payments enabled
+      description: Partial payments enabled
     allow_customer_notes:
       name: allow_customer_notes
       in: query
       required: false
       schema:
         type: boolean
-      description: Invoice Template customer notes enabled
+      description: Customer notes enabled
     allow_customer_portal:
       name: allow_customer_portal
       in: query
       required: false
       schema:
         type: boolean
-      description: Invoice Template customer portal enabled
+      description: Customer portal enabled
+    mid_id:
+      name: mid_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for mid (starts with `mid-`)
+    contact_id:
+      name: contact_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for contact (starts with `contact-`)
+    company_id:
+      name: company_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for cart (starts with `company-`)
+    is_inactive:
+      name: is_inactive
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Provide `false` to fetch soft deleted records
+    last_request_id:
+      name: last_request_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Last created or patched request id
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: 'Associated system ID records to fetch and include in response.  See **EXPAND** for available values. '
+    fetch:
+      name: fetch
+      in: query
+      required: false
+      schema:
+        type: string
+      description: 'Associated system records to fetch and include in response.  See **FETCH** for available values. '
+    invoice_template_id:
+      name: invoice_template_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for invoice template (starts with `template-`)
+    invoice_id:
+      name: invoice_id
+      in: query
+      required: false
+      schema:
+        type: string
+      description: System identifier for invoice (starts with `invoice-`)
 security:
   - jwt: []
   - applicationKey: []
