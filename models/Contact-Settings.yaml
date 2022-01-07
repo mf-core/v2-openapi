@@ -1,0 +1,11 @@
+title: Contact Settings
+type: object
+x-tags:
+  - CONTACT
+  - SETTINGS
+properties:
+  id:
+    type: string
+description: 'Default Settings applied to [Contacts](./Contacts.yaml)'
+examples:
+  - id: string

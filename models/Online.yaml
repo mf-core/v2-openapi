@@ -1,0 +1,33 @@
+title: Online
+type: object
+maxProperties: 12
+description: Contact's online presence.  Can add up to 5 additional key/value pairs not provided in the object
+properties:
+  website:
+    type: string
+    example: 'https://website.com'
+    description: Contact website URL
+  blog:
+    type: string
+    example: 'https://blog.website.com'
+    description: Contact blog URL
+  facebook:
+    type: string
+    example: 'https://www.facebook.com/id'
+    description: Contact Facebook profile URL
+  twitter:
+    type: string
+    example: 'http://www.twitter.com/username'
+    description: Contact Twitter profile URL
+  pinterest:
+    type: string
+    example: 'http://www.pinterest.com/username'
+    description: Contact Pinterest profile URL
+  instagram:
+    type: string
+    example: 'https://www.instagram.com/username'
+    description: Contact Instagram profile URL
+  linkedin:
+    type: string
+    example: 'http://www.linkedin.com/in/username.'
+    description: Contact Linkedin profile URL

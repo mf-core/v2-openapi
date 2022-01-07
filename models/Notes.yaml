@@ -1,0 +1,22 @@
+title: Notes
+type: object
+x-tags:
+  - COMMON
+properties:
+  subject:
+    type: string
+    example: This is the note subject
+    description: Note subject
+    maxLength: 40
+  body:
+    type: string
+    description: Note body
+    example: 'Organic pickled asymmetrical chia shaman, skateboard meh polaroid flexitarian. Waistcoat bicycle rights enamel pin, af actually mustache franzen prism art party vaporware kitsch.'
+  private:
+    type: boolean
+    default: false
+    description: Flag note as private
+  user_id:
+    $ref: ../reference/Users.yaml#/components/schemas/User
+required:
+  - subject

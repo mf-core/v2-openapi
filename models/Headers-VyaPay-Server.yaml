@@ -1,0 +1,22 @@
+title: Headers API Server
+type: object
+x-tags:
+  - SECURITY
+  - AUTHENTICATION
+x-internal: false
+properties:
+  x-client-key:
+    type: string
+    default: 10852b2b2f57480696e5a4e918b26cc1
+    description: API Gateway Test Merchant token
+  x-api-key:
+    type: string
+    default: U68Cy5DVD4IAEyHZ357y15HK457C872Yp6l7E659465914TUB6l4Y4GGA68VN5DVK6UDdY
+    description: API Server Merchant Application Key
+required:
+  - x-client-key
+  - x-api-key
+description: API Server Header Key Authentication (for internal use only)
+examples:
+  - x-client-key: 10852b2b2f57480696e5a4e918b26cc1
+    x-api-key: U68Cy5DVD4IAEyHZ357y15HK457C872Yp6l7E659465914TUB6l4Y4GGA68VN5DVK6UDdY

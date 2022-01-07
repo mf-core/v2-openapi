@@ -1,0 +1,18 @@
+title: VyaPay Gateway Header Authentication
+type: object
+x-tags:
+  - SECURITY
+  - AUTHENTICATION
+description: API and Client API Gate Authentication Keys
+properties:
+  vyalynk-client-id:
+    type: string
+    default: 10852b2b2f57480696e5a4e918b26cc1
+    description: API Gateway Test Merchant Token
+  vyalynk-app-id:
+    type: string
+    default: T6554252567241061980
+    description: API Gateway Test Application Key
+required:
+  - vyalynk-client-id
+  - vyalynk-app-id

@@ -1,0 +1,57 @@
+title: Address
+type: object
+x-tags:
+  - Address
+  - Common
+description: Address Object
+properties:
+  name:
+    type: string
+    example: North Shore office
+    description: Description location name
+  contact:
+    type: string
+    description: Location contact name
+    example: Mary Klapp
+  street_1:
+    type: string
+    description: Address street 1
+    example: 27 Enterprise Way
+  street_2:
+    type: string
+    description: Address street 2
+    example: Suite 40
+  street_3:
+    type: string
+    description: Address street 3
+    example: Bldg 7
+  city:
+    type: string
+    example: Key Biscayne
+    description: Address city name
+  state_code:
+    type: string
+    example: FL
+    description: '[ISO 3166]() 2-digit US-state or CA-province code'
+    maxLength: 2
+    minLength: 2
+  postal_code:
+    type: string
+    description: 'US 5-digit or CA 6-char postal code.  No spaces, dashes or special characters. '
+    example: '33149'
+    minLength: 5
+    maxLength: 6
+  country_code:
+    type: string
+    example: US
+    minLength: 2
+    maxLength: 2
+    description: ISO-3166 2 character country code (US or CA)
+    enum:
+      - US
+      - CA
+  phone:
+    $ref: ./Phones.yaml
+required:
+  - street_1
+  - postal_code

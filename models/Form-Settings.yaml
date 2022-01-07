@@ -1,0 +1,7 @@
+title: Form Settings
+type: object
+properties:
+  id:
+    type: string
+x-tags:
+  - FORMS

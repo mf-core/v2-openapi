@@ -1,0 +1,56 @@
+description: ''
+type: object
+x-examples:
+  example-1:
+    name: Fee 1
+    description: This is fee 1
+    code: T01
+    type: RATE
+    value: 6.75
+examples:
+  - name: Fee 1
+    description: Fee 1 is an rate/percentage fee
+    code: T01
+    type: RATE
+    value: 7.5
+  - name: Fee 2
+    description: Fee 2 is an amount/flat fee
+    code: T02
+    type: AMOUNT
+    value: '5.00'
+properties:
+  name:
+    type: string
+    minLength: 1
+    example: Fee 1
+    description: Name of fee
+  description:
+    type: string
+    description: Fee description
+  code:
+    type: string
+    minLength: 1
+    description: Fee Code or other identifier
+    example: T-01
+  type:
+    type: string
+    minLength: 1
+    description: Fee type
+    enum:
+      - RATE
+      - AMOUNT
+    example: RATE
+  value:
+    type:
+      - number
+      - string
+    example: 7.75
+    description: Value for fee `type`
+required:
+  - name
+  - type
+  - value
+x-tags:
+  - COMMON
+  - SALE
+  - FEE
