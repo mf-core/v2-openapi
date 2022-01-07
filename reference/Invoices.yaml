@@ -51,6 +51,31 @@ paths:
       tags: []
       responses: {}
       operationId: delete-invoices-templates
+  /invoices:
+    get:
+      summary: List or Fetch Invoices
+      tags:
+        - invoices
+      responses: {}
+      operationId: get-invoices
+    post:
+      summary: Create an Invoice
+      tags:
+        - invoices
+      responses: {}
+      operationId: post-invoices
+    patch:
+      summary: Patch an Invoice
+      tags:
+        - invoices
+      responses: {}
+      operationId: patch-invoices
+    delete:
+      summary: Remove an Invoice
+      tags:
+        - invoices
+      responses: {}
+      operationId: delete-invoices
 components:
   schemas: {}
   securitySchemes:
