@@ -1,7 +1,0 @@
-title: Forms
-type: object
-properties:
-  id:
-    type: string
-x-tags:
-  - FORM

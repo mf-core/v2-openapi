@@ -1,7 +1,0 @@
-title: Form Templates
-type: object
-properties:
-  id:
-    type: string
-x-tags:
-  - FORMS

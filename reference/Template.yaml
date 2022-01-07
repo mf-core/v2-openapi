@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: Invoices
   version: '1.0'
-  summary: Invoice management endpoints
+  summary: Merchant feature management endpoints
   description: |-
-    Create and manage invoices.
+    Create and manage merchant features.
   contact:
     name: Russ Palermo
     url: Base.do

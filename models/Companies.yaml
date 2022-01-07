@@ -1,7 +1,0 @@
-title: Companies
-type: object
-x-tags:
-  - COMPANY
-properties:
-  id:
-    type: string
