@@ -29,7 +29,7 @@ servers:
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
 paths:
-  '/contacts/{contact_id}':
+  /contacts:
     get:
       summary: Fetch Contacts
       tags:
@@ -86,7 +86,26 @@ paths:
           application/json:
             schema:
               $ref: ../models/Contacts.yaml
-            examples: {}
+            examples:
+              Post Example:
+                value:
+                  first_name: Marvin
+                  last_name: Johnson
+                  display_name: Marvin Johnson
+                  default_email:
+                    name: Primary email
+                    address: marvin@example.com
+                    type: PERSONAL
+                  default_phone:
+                    name: Primary phone
+                    country_code: '+1'
+                    number: 4212786391
+                    type: MOBILE
+                  avatar: 'https://avatars.dicebear.com/api/initials/marvin%20johnson.svg'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
         description: ''
     patch:
       summary: Patch a Contact by ID
@@ -107,15 +126,7 @@ paths:
 
         * You can fetch an archived contact ...
         * Setting an archived contact's `deleted_at` value to null will....
-    parameters:
-      - schema:
-          type: string
-          example: contact-38479923312388
-          maxLength: 100
-        name: contact_id
-        in: path
-        required: true
-        description: The contact system record identifier (starts with `contct-`)
+    parameters: []
   /companies:
     post:
       summary: Create new Company
