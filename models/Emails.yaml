@@ -24,3 +24,5 @@ properties:
       - OFFICE
     example: OTHER
     description: Email type
+required:
+  - address

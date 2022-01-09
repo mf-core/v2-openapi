@@ -32,10 +32,6 @@ properties:
     type: string
     example: Marvin Johnson
     description: Contact display name.  Required if both `first_name` and `last_name` values are not provided with request
-  default_email:
-    $ref: ./Emails.yaml
-  default_phone:
-    $ref: ./Phones.yaml
   avatar:
     type: string
     format: uri
@@ -51,7 +47,17 @@ properties:
     example: ACCT-3092381239838
     maxLength: 100
     description: 'Account ID association with external systems.  If not provided will default to a sequential `id_account` derived from pattern set in [Contact Settings](./Contact-Settings.yaml)'
+  default_email:
+    $ref: ./Emails.yaml
+  default_phone:
+    $ref: ./Phones.yaml
   online:
     $ref: ./Online.yaml
+  default_address:
+    $ref: ./Address.yaml
+  billing_address:
+    $ref: ./Address.yaml
+  shipping_address:
+    $ref: ./Address.yaml
 required:
   - default_email

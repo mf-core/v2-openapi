@@ -1,0 +1,16 @@
+title: Portal
+type: object
+x-tags:
+  - PORTAL
+description: |
+  Customer Portal model
+properties:
+  enabled:
+    type: boolean
+    description: Enable or disable customer portal
+  enable_chat:
+    type: boolean
+    default: false
+    description: Enable chat feature in portal
+  theme:
+    $ref: ./Colors.yaml

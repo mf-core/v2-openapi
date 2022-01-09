@@ -46,3 +46,4 @@ properties:
     $ref: ./Address.yaml
 required:
   - dba_name
+  - default_email
