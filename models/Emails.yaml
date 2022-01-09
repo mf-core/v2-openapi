@@ -3,11 +3,12 @@ type: object
 x-tags:
   - Email
   - Common
+description: Email object
 properties:
   name:
     type: string
     description: Descriptive name for email
-    example: Primary email
+    example: Primary contact email
   address:
     type: string
     description: Email address
@@ -19,6 +20,7 @@ properties:
       - PERSONAL
       - WORK
       - OTHER
-    example: PERSONAL
+      - SUPPORT
+      - OFFICE
+    example: OTHER
     description: Email type
-description: Email object

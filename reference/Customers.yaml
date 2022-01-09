@@ -162,6 +162,33 @@ paths:
         - COMPANIES
       responses: {}
       operationId: get-companies
+  /contacts/settings:
+    get:
+      summary: Fetch merchant contact settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: get-contacts-settings
+    patch:
+      summary: Patch merchant contact settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: patch-contacts-settings
+      description: ''
+  /companies/settings:
+    get:
+      summary: Fetch merchant company settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: get-companies-settings
+    patch:
+      summary: Patch merchant company settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: patch-companies-settings
 components:
   schemas:
     Contacts:

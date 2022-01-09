@@ -2,6 +2,39 @@ title: Companies
 type: object
 x-tags:
   - COMPANY
+description: Company base model
 properties:
-  id:
+  dba_name:
     type: string
+    example: Ballard's Balloons
+    description: Company DBA name
+  legal_name:
+    type: string
+    example: Worldwide Balloons Inc.
+    description: Company legal name
+  logo_url:
+    type: string
+    example: 'https://via.placeholder.com/728x90.png'
+    description: Company logo URL
+  badge_url:
+    type: string
+    example: 'https://via.placeholder.com/300'
+    description: 'Company badge URL.  Should be 1:1 ratio'
+  id_company:
+    type: string
+    description: Company ID.  Typically used to associate record with external systems.  If not provided will be automatically generated according to the pattern set in the merchant Company Settings
+  id_account:
+    type: string
+    description: Account ID.  Typically used to associate record with external systems.  If not provided will be automatically generated according to the pattern set in the merchant Company Settings
+  sentiment:
+    type:
+      - string
+      - integer
+    example: 3
+    description: Company sentiment.  Can be used for internal ranking or customer satisfaction measurement.
+  online:
+    $ref: ./Online.yaml
+  default_email:
+    $ref: ./Emails.yaml
+required:
+  - dba_name
