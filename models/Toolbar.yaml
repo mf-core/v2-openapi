@@ -1,0 +1,33 @@
+title: Toolbar
+type: object
+x-tags:
+  - SETTINGS
+description: Page header bar 50px height.  Inherits the theme primary color
+properties:
+  enabled:
+    type: boolean
+    default: false
+    description: 'Enable page toolbar.  Takes precedence if `statusbar` is also enabled.  '
+  title:
+    type: string
+    description: Toolbar title
+    example: Payment Platform
+  badge_url:
+    type: string
+    example: 'https://via.placeholder.com/100'
+    description: Image URL for titlebar avatar
+  icon:
+    type: string
+    description: '[Material Icon](https://fonts.google.com/icons?selected=Material+Icons) name for titlebar avatar.  If `badge_url` is provided this value is ignored.'
+  glossy:
+    type: boolean
+    description: Applies a glossy effect to toolbar
+    default: false
+  elevated:
+    type: boolean
+    default: false
+    description: Applies an elevated effect to toolbar
+  side_menu:
+    type: boolean
+    default: true
+    description: 'Displays the theme [MENU](./Menu.yaml) in right side of titlebar.'

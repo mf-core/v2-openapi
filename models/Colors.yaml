@@ -1,0 +1,68 @@
+type: object
+title: Colors
+x-tags:
+  - SETTINGS
+description: Set theme colors.
+additionalProperties: false
+properties:
+  dark_mode:
+    type: boolean
+    default: false
+    description: App default mode on initialization
+  background_light:
+    type: string
+    example: '#fafafa'
+    description: Hex or websafe color for page background in light mode
+  background_dark:
+    type: string
+    example: '#1d1d1d'
+    description: Hex or websafe color for page background in dark mode
+  primary_light:
+    type: string
+    description: Hex or websafe primary color for headers and primary buttons in light mode.
+    example: '#d84538'
+  primary_dark:
+    type: string
+    description: Hex or websafe primary color for headers and primary buttons in dark mode.
+    example: '#d84538'
+  secondary_light:
+    type: string
+    description: 'Hex or websafe secondary color for list headers, menu backgrounds and secondary buttons in light mode.'
+    example: '#d2d4d4'
+  secondary_dark:
+    type: string
+    description: 'Hex or websafe secondary color for list headers, menu backgrounds and secondary buttons in dark mode.'
+    example: '#403232'
+  accent_light:
+    type: string
+    description: Hex or websafe accent color in light mode.
+    example: '#e8e8e8'
+  accent_dark:
+    type: string
+    description: Hex or websafe accent color in dark mode.
+    example: '#403232'
+  positive:
+    type: string
+    example: '#2da148'
+    description: Hex or websafe color for successful notifications
+  negative:
+    type: string
+    example: '#b52435'
+    description: Hex or websafe color for error notifications
+  info:
+    type: string
+    example: '#b52435'
+    description: Hex or websafe color for system info notifications
+examples:
+  - dark_mode: false
+    background_light: '#fafafa'
+    background_dark: '#1d1d1d'
+    primary_light: '#d84538'
+    primary_dark: '#d84538'
+    secondary_light: '#d2d4d4'
+    secondary_dark: '#403232'
+    accent_light: '#e8e8e8'
+    accent_dark: '#403232'
+    positive: '#2da148'
+    negative: '#b52435'
+    info: '#b52435'

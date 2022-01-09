@@ -1,0 +1,18 @@
+title: Themes
+type: object
+x-tags:
+  - SETTINGS
+description: ''
+properties:
+  name:
+    type: string
+    description: Theme name
+    example: Default Theme
+  description:
+    type: string
+    description: Theme description
+    example: Default theme - light mode
+  menu:
+    $ref: ./Menu.yaml
+  colors:
+    $ref: ./Colors.yaml

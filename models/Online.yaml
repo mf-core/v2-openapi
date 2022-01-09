@@ -1,7 +1,8 @@
-title: Online
 type: object
+title: Online
 maxProperties: 12
-description: Contact's online presence.  Can add up to 5 additional key/value pairs not provided in the object
+description: Online presence.  Can add up to 5 additional key/value pairs not provided in the object
+additionalProperties: false
 properties:
   website:
     type: string

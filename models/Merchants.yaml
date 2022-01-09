@@ -1,0 +1,7 @@
+title: Merchant
+type: object
+properties:
+  id:
+    type: string
+x-tags:
+  - MERCHANTS

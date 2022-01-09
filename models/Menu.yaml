@@ -1,0 +1,22 @@
+title: Menu
+type: object
+x-tags:
+  - SETTINGS
+description: 'Toolbar and statusbar drop menu items.  If user JWT login will display the [User](./User.yaml) `display_name`.  If API Key initialization will display the [Merchant](./Merchant.yaml) `dba_name`'
+properties:
+  enable_dark_mode:
+    type: boolean
+    description: Allows user to switch between dark and light mode
+    default: true
+  enable_merchant_settings:
+    type: boolean
+    description: Allows users with **ADMIN** role to access merchant settings
+    default: true
+  enable_user_profile:
+    type: boolean
+    default: true
+    description: Enable user to access personal profile.  Only available when user is logged in with JWT.
+  enable_logout:
+    type: boolean
+    default: true
+    description: Allow user to logout of current session and return to login screen.

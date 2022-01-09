@@ -36,5 +36,13 @@ properties:
     $ref: ./Online.yaml
   default_email:
     $ref: ./Emails.yaml
+  default_phone:
+    $ref: ./Phones.yaml
+  default_address:
+    $ref: ./Address.yaml
+  billing_address:
+    $ref: ./Address.yaml
+  shipping_address:
+    $ref: ./Address.yaml
 required:
   - dba_name

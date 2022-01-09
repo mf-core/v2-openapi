@@ -1,0 +1,8 @@
+title: User
+type: object
+x-tags:
+  - USERS
+properties:
+  id:
+    type: string
+description: System User model
