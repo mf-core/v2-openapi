@@ -144,6 +144,11 @@ paths:
         - COMPANIES
       responses: {}
       operationId: post-companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Companies.yaml
     patch:
       summary: Patch Company by ID
       tags:
