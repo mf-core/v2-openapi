@@ -22,6 +22,7 @@ properties:
       - OTHER
       - SUPPORT
       - OFFICE
+      - DEFAULT
     example: OTHER
     description: Email type
 required:

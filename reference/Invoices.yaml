@@ -84,6 +84,20 @@ paths:
         - invoices
       responses: {}
       operationId: delete-invoices
+  /invoices/settings:
+    get:
+      summary: List or Fetch Invoice Settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: get-invoices-settings
+      description: ''
+    patch:
+      summary: Patch Invoice Settings
+      tags:
+        - SETTINGS
+      responses: {}
+      operationId: patch-invoices-settings
 components:
   schemas: {}
   securitySchemes:

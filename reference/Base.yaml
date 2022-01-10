@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Base
+  version: '1.0'
+  summary: Base API endpoints
+  description: The **BASE** endpoints are common resources shared between APIs
+  contact:
+    name: Russ Palermo
+    url: Base.do
+    email: rjpalermo@Live.com
+servers:
+  - url: 'http://localhost:3030'
+    description: Development
+  - url: 'http://v2-invoices-app.dev.vyapay.com'
+    description: Staging (API Server)
+  - url: 'http://v2-invoices-app.vyapay.com'
+    description: Production (API Server)
+  - url: 'http://test-api.vyapay.com'
+    description: Test (API Gateway)
+  - url: 'http://api.vyapay.com'
+    description: Production (API Gateway)
+paths:
+  /phones:
+    get:
+      summary: List merchant phones
+      tags:
+        - BASE
+        - PHONES
+      responses: {}
+      operationId: get-phones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mid_id:
+                  type: string
+                '':
+                  type: string
+    post:
+      summary: Create phone
+      tags:
+        - BASE
+        - PHONES
+      responses: {}
+      operationId: post-phones
+    patch:
+      summary: Patch phone by ID
+      tags:
+        - BASE
+        - PHONES
+      responses: {}
+      operationId: patch-phones
+    delete:
+      summary: Remove Phone by ID
+      tags:
+        - BASE
+        - PHONES
+      responses: {}
+      operationId: delete-phones
+components:
+  schemas:
+    Phones:
+      title: Phones
+      type: object
+      x-tags:
+        - BASE
+        - PHONES
+      properties:
+        name:
+          type: string
+          example: Primary phone
+          description: Descriptive name for phone
+        country_code:
+          type: string
+          example: '+1'
+          description: '[Country calling code](https://en.wikipedia.org/wiki/List_of_country_calling_codes), no spaces'
+        number:
+          type:
+            - string
+            - integer
+          example: 4212786391
+          maxLength: 10
+          minLength: 10
+          description: 'Area and dialing code.  WHole number string or integer accepted.  No spaces, dashes or special characters'
+        extension:
+          type: string
+          example: '233'
+          maxLength: 10
+          description: Phone extension
+        type:
+          type: string
+          enum:
+            - MOBILE
+            - OFFICE
+            - FAX
+            - SMS
+            - LANDLINE
+            - OTHER
+          description: Phone type
+          example: LANDLINE
+    ID_Assignment:
+      title: ID_Assignment
+      oneOf:
+        - properties:
+            mid_id:
+              type: string
+            contact_id:
+              type: string
+            company_id:
+              type: string
+      type: object
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      description: JWT token received from User Login
+    clientKey:
+      name: vyalynk-client-id
+      type: apiKey
+      in: header
+      description: API Gateway Merchant Authorization.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
+    applicationKey:
+      name: vyalynk-app-id
+      type: apiKey
+      in: header
+      description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
+security:
+  - jwt: []
+  - applicationKey: []
+    clientKey: []

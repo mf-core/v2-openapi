@@ -1,8 +1,8 @@
 title: Phone
 type: object
+description: Phone number object
 x-tags:
-  - Phone
-  - Common
+  - BASE
 properties:
   name:
     type: string
@@ -19,8 +19,6 @@ properties:
     example: 4212786391
     maxLength: 10
     minLength: 10
-    maximum: 9999999999
-    minimum: 1111111111
     description: 'Area and dialing code.  WHole number string or integer accepted.  No spaces, dashes or special characters'
   extension:
     type: string
@@ -31,13 +29,13 @@ properties:
     type: string
     enum:
       - MOBILE
-      - OFFICE
       - FAX
       - SMS
       - LANDLINE
       - OTHER
-    example: LANDLINE
+      - WORK
+      - HOME
     description: Phone type
+    example: LANDLINE
 required:
   - number
-description: Phone number object
