@@ -49,6 +49,11 @@ paths:
       tags: []
       responses: {}
       operationId: post-invoices-templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Invoice-Templates.yaml
     patch:
       summary: Patch Invoice Template
       tags: []
@@ -72,6 +77,11 @@ paths:
         - invoices
       responses: {}
       operationId: post-invoices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Invoice.yaml
     patch:
       summary: Patch an Invoice
       tags:
@@ -84,7 +94,7 @@ paths:
         - invoices
       responses: {}
       operationId: delete-invoices
-  /invoices/settings:
+  '/invoices/settings/{settings_id}':
     get:
       summary: List or Fetch Invoice Settings
       tags:
@@ -98,6 +108,18 @@ paths:
         - SETTINGS
       responses: {}
       operationId: patch-invoices-settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Invoice-Settings.yaml
+    parameters:
+      - schema:
+          type: string
+        name: settings_id
+        in: path
+        required: true
+        description: System invoice settings id (starts with `settings`)
 components:
   schemas: {}
   securitySchemes:

@@ -1,0 +1,50 @@
+title: Invoice Settings
+type: object
+x-tags:
+  - SETTINGS
+  - INVOICES
+description: General settings for creating and managing invoices
+properties:
+  id_prefix:
+    type: string
+    example: INVOICE-
+    description: 'Default invoice ID prefix applied to all new invoices unless an `id_invoice` is provided when creating an [Invoice](./Invoice.yaml) or if a new invoice is created from an [Invoice Template](./Invoice-Templates) that has an `id_prefix` assignment'
+  id_suffix:
+    type: string
+    description: 'Default invoice ID suffix applied to all new invoices unless an `id_invoice` is provided when creating an [Invoice](./Invoice.yaml) or if a new invoice is created from an [Invoice Template](./Invoice-Templates) that has an `id_suffix` assignment'
+  id_counter:
+    type: integer
+  tags:
+    type: array
+    items:
+      type: string
+  default_tags:
+    type: array
+    description: Array of default tags that will apply to all new Invoices
+    uniqueItems: true
+    maxItems: 20
+    items: {}
+  allow_edit_tags:
+    type: boolean
+    default: true
+    description: Flag available for tag select lists allowing user to add/remove default tags
+  termn:
+    type: array
+    items:
+      type: object
+      properties:
+        days:
+          type: integer
+          description: Number of days from issue the invoice payment id due
+          minimum: 0
+          maximum: 365
+          example: 0
+        description:
+          type: string
+          description: Description of the payment terms
+          example: Payable upon receipt
+      required:
+        - days
+        - description
+required:
+  - id_counter

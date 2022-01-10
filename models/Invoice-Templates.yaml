@@ -1,0 +1,8 @@
+title: Invoice Templates
+type: object
+x-tags:
+  - TEMPLATES
+  - INVOICE
+properties:
+  id:
+    type: string
