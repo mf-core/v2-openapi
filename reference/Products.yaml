@@ -1,10 +1,9 @@
 openapi: 3.1.0
 info:
-  title: Cart
+  title: Products
   version: '1.0'
   summary: Cart management endpoints
-  description: |-
-    Create and manage carts.
+  description: Create and manage products.
   contact:
     name: Russ Palermo
     url: Base.do
