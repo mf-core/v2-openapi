@@ -3,12 +3,11 @@ info:
   title: Payment Engine API
   version: '1.0'
   summary: Payment Engine
-  description: |-
-    Full API.
+  description: Merchant Services API
   contact:
     name: Russ Palermo
     url: Base.do
-    email: rjpalermo@Live.com
+    email: rjpalermo@live.com
 servers:
   - url: 'http://localhost:3030'
     description: Development
@@ -20,7 +19,37 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-paths: {}
+paths:
+  /taxes:
+    get:
+      summary: Fetch Taxes
+      tags:
+        - TAX
+        - SETTINGS
+      responses: {}
+      operationId: get-taxes
+      description: ''
+    post:
+      summary: Create Tax
+      tags:
+        - TAX
+        - SETTINGS
+      responses: {}
+      operationId: post-taxes
+    patch:
+      summary: Patch Tax
+      tags:
+        - TAX
+        - SETTINGS
+      responses: {}
+      operationId: patch-taxes
+    delete:
+      summary: Remove Tax
+      tags:
+        - TAX
+        - SETTINGS
+      responses: {}
+      operationId: delete-taxes
 components:
   schemas: {}
   securitySchemes:

@@ -9,15 +9,15 @@ x-examples:
     value: 6.75
 examples:
   - name: Tax 1
-    description: Tax 1 is an rate/percentage tax
+    description: A rate/percentage tax example
     code: T01
     type: RATE
     value: 7.5
   - name: Tax 2
-    description: Tax 2 is an amount/flat tax
+    description: An amount/flat tax example
     code: T02
     type: AMOUNT
-    value: '5.00'
+    value: '3.45'
 properties:
   name:
     type: string
