@@ -1,0 +1,43 @@
+description: ''
+type: object
+x-examples:
+  example-1:
+    name: Super Widget
+    description: string
+    unit_price: 24.87
+    unit_cost: 9.24
+    ignore_taxes: false
+    ignore_fees: false
+    ignore_discounts: false
+    ignore_costs: false
+properties:
+  product_id:
+    type: string
+    description: System Products record identifier (starts with `product-`).  If provided the item will inherit the associated product system values.  Any parameter values provided in this item object will overwrite the inherited values and apply for this cart item object only and will not update the system product.
+  name:
+    type: string
+    minLength: 1
+    description: Product name.  If `product_id` is provided this value will override the inherited system product `name` value.  If `product_id` is not provided this value is REQUIRED
+  description:
+    type: string
+    minLength: 1
+  unit_price:
+    type: number
+  unit_cost:
+    type: number
+  ignore_taxes:
+    type: boolean
+  ignore_fees:
+    type: boolean
+  ignore_discounts:
+    type: boolean
+  ignore_costs:
+    type: boolean
+required:
+  - description
+  - unit_price
+  - unit_cost
+  - ignore_taxes
+  - ignore_fees
+  - ignore_discounts
+  - ignore_costs

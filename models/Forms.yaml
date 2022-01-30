@@ -1,7 +1,28 @@
 title: Forms
 type: object
-properties:
-  id:
-    type: string
 x-tags:
   - FORM
+description: Form Model
+properties:
+  mid_id:
+    type: string
+    description: Merchant account MID id.  Required if merchant account has multiple mids.
+  template_id:
+    type: string
+    description: '[Form Template ID](./Form-Templates.yaml) (starts with `template-`) used for the online form.'
+    example: HOSTED_1
+    enum:
+      - HOSTED_1
+      - HOSTED_2
+      - HOSTED_3
+      - HOSTED_4
+      - HOSTED_5
+      - HOSTED_6
+  cart_id:
+    type: string
+    description: '[Cart ID](./Carts.yaml) providing the form sale items and amounts.  If a `cart_id` is provided the `cart` object will be ignored.'
+  template:
+    type: string
+    description: '[Form Template](./Form-Template) system `id` or `template` value.  If providing a `template.id` value the form will inherit the values associated with the template.  If the `template` value is used the form will '
+required:
+  - template_id

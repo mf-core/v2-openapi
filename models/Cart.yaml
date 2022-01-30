@@ -1,0 +1,24 @@
+title: Cart
+type: object
+description: ''
+properties:
+  amount_total:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    minimum: 0
+    maximum: 99999
+    description: 'The cart total amount.  If provided and greater than `0` all cart system calculations will be disabled.  If not provided the system will sum the values or results from the `amount_subtotal`, `amount_fees`, `amount_discounts`, `amount_costs` and `amount_shipping`'
+  amount_subtotal:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    minimum: 0
+    maximum: 99999
+    description: The cart subtotal amount.  If parameter omitted or value = `0` or `null` a cart `items` object is required and this value will be the result of a sum of the `amount_subtotal` for each object in the `items.data`
+  items:
+    type: object

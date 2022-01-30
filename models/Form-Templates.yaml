@@ -1,7 +1,37 @@
-title: Form Templates
+title: Hosted Form Templates
 type: object
-properties:
-  id:
-    type: string
 x-tags:
   - FORMS
+description: Base template with default values for online hosted payment forms.
+x-internal: false
+examples:
+  - mid_id: string
+    name: Hosted Form 1
+    description: This is the description for the form template used in the form template list.
+    is_test: true
+properties:
+  mid_id:
+    type: string
+    description: 'The Merchant system or host MID account identifier that will process payments for forms created from this template.  Necessary only if the merchant account has more than one MID assignment.  Can be omitted, `null` or changed when creating a form.'
+  name:
+    type: string
+    example: Hosted Form 1
+    description: Unique name for form template
+  description:
+    type: string
+    example: This is the description for the form template used in the form template list.
+    description: Form template description used in internal lists
+  is_test:
+    type: boolean
+    default: true
+    description: Default mode for all forms created from template.  Set `true` to place new forms in LIVE mode.
+  cart_id:
+    type: string
+    description: 'Provide a [Carts](./Carts.yaml) system identifier to apply an existing cart object of items and costs.'
+  cart:
+    description: Create a cart of items and costs to apply to forms created from this template.  **NOTE** If a `cart_id` is provided this object and values will be ignored.
+    allOf:
+      - properties: {}
+        $ref: ''
+required:
+  - name
