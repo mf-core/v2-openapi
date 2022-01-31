@@ -1,15 +1,25 @@
 title: Cart
 type: object
 description: ''
+x-tags:
+  - CART
+examples:
+  - {}
 properties:
+  name:
+    type: string
+    description: Name of cart
+    example: Test Cart
+  description:
+    type: string
+    example: This is a cart description
+    description: Cart description
   amount_total:
     type:
       - string
       - number
     example: 0
     format: float
-    minimum: 0
-    maximum: 99999
     description: 'The cart total amount.  If provided and greater than `0` all cart system calculations will be disabled.  If not provided the system will sum the values or results from the `amount_subtotal`, `amount_fees`, `amount_discounts`, `amount_costs` and `amount_shipping`'
   amount_subtotal:
     type:
@@ -17,8 +27,66 @@ properties:
       - number
     example: 0
     format: float
-    minimum: 0
-    maximum: 99999
-    description: The cart subtotal amount.  If parameter omitted or value = `0` or `null` a cart `items` object is required and this value will be the result of a sum of the `amount_subtotal` for each object in the `items.data`
+    description: 'The cart subtotal amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.items](Cart-Items.yaml) array object is provided the system will calculate the `amount_subtotal` value from the items provided in the array.'
+  amount_taxes:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    description: 'The cart total taxes amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.tax](Cart-Tax.yaml) array object is provided the system will calculate `amount_taxes` value.'
+  amount_fees:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    description: 'The cart total fees amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.fee](Cart-Fee.yaml) array object is provided the system will calculate `amount_fees` value.'
+  amount_discounts:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    description: 'The cart total discounts amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.discount](Cart-Discount.yaml) array object is provided the system will calculate `amount_discounts` value.'
+  amount_costs:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    description: 'The cart total costs amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.cost](Cart-Costs.yaml) array object is provided the system will calculate `amount_costs` value.'
+  amount_shipping:
+    type:
+      - string
+      - number
+    example: 0
+    format: float
+    description: 'The cart shipping amount.  If parameter omitted or value = `0` or `null` at a valid [cart.shipping](Cart-Discount.yaml) object is provided the `amount_shipping` will inherit the `cart.shipping.total` value.'
   items:
-    type: object
+    type: array
+    description: Cart items array
+    items:
+      $ref: ./Cart-Item.yaml
+  taxes:
+    description: Cart Taxes array
+    type: array
+    items:
+      $ref: ./Cart-Tax.yaml
+  fees:
+    type: array
+    description: Cart Fees array
+    items:
+      $ref: ./Cart-Fee.yaml
+  discounts:
+    type: array
+    description: Cart Discounts array
+    items:
+      $ref: ./Cart-Discount.yaml
+  costs:
+    type: array
+    description: Cart Costs array
+    items:
+      $ref: ./Cart-Cost.yaml
+  shipping:
+    $ref: ./Cart-Shipping.yaml

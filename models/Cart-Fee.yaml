@@ -1,0 +1,25 @@
+title: Cart-Fees
+x-tags:
+  - CART
+  - FEES
+description: |-
+  Fee object(s) for [cart.fees](./Cart.yaml) array.  A fee item can be a **RATE** (precentage) or a flat **AMOUNT**.
+
+  ##### OPERATION
+
+  * The system will sum the `fee.value` for all objects with a `fee.type` of `RATE` and return a `fee.total_rate` value in the fee object.
+  * The system will sum the `fee.value` for all objects with a `fee.type` of `AMOUNT` and return a `fee.total_amount` value.
+allOf:
+  - type: object
+    properties:
+      fee_id:
+        type: string
+        description: System Fee record identifier (starts with `fee-`).  If provided the fee object will inherit the system fee values.  Any other value provided in this object will override the inherited value but will not change the system fee record.
+  - $ref: ./Fees.yaml
+examples:
+  - fee_id: null
+    name: FEE 1
+    description: A flat mount fee example
+    code: F01
+    type: AMOUNT
+    value: 2.25

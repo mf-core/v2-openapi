@@ -1,0 +1,25 @@
+title: Cart-Costs
+x-tags:
+  - CART
+  - COST
+description: |-
+  Cost object(s) for [cart.costs](./Cart.yaml) array.  A cost item can be a **RATE** (precentage) or a flat **AMOUNT**.
+
+  ##### OPERATION
+
+  * The system will sum the `cost.value` for all objects with a `cost.type` of `RATE` and return a `cost.total_rate` value in the cost object.
+  * The system will sum the `cost.value` for all objects with a `cost.type` of `AMOUNT` and return a `cost.total_amount` value.
+allOf:
+  - type: object
+    properties:
+      cost_id:
+        type: string
+        description: System Cost record identifier (starts with `cost-`).  If provided the cost object will inherit the system cost values.  Any other value provided in this object will override the inherited value but will not change the system cost record.
+  - $ref: ./Costs.yaml
+examples:
+  - cost_id: null
+    name: COST 1
+    description: A flat mount cost example
+    code: C01
+    type: AMOUNT
+    value: 4.45

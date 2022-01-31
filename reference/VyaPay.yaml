@@ -1,13 +1,14 @@
 openapi: 3.1.0
 info:
-  title: Products
+  title: VyaPay OpenAPI 3.1
   version: '1.0'
-  summary: Product management endpoints
-  description: Create and manage products.
+  summary: VyaPay API
+  description: |-
+    VyaPay API.
   contact:
     name: Russ Palermo
     url: Base.do
-    email: rjpalermo@Live.com
+    email: rjpalermo@live.com
 servers:
   - url: 'http://localhost:3030'
     description: Development
@@ -19,32 +20,7 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-paths:
-  '/carts/{cart_id}':
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-carts
-    post:
-      summary: ''
-      operationId: post-carts
-      responses:
-        '200':
-          description: OK
-    patch:
-      summary: ''
-      operationId: patch-carts
-      responses:
-        '200':
-          description: OK
-    delete:
-      summary: ''
-      operationId: delete-carts
-      responses: {}
-      description: ''
-    parameters:
-      - $ref: '#/components/parameters/cart_id'
+paths: {}
 components:
   schemas: {}
   securitySchemes:
@@ -62,15 +38,6 @@ components:
       type: apiKey
       in: header
       description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
-  parameters:
-    cart_id:
-      name: cart_id
-      in: path
-      required: true
-      schema:
-        type: string
-        example: cart-yu4r32kbe9d7hu7bbt90l
-      description: Cart system record identifier.
 security:
   - jwt: []
   - applicationKey: []

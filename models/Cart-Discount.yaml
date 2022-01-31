@@ -1,0 +1,25 @@
+title: Cart-Discounts
+x-tags:
+  - CART
+  - DISCOUNT
+description: |-
+  Discount object(s) for [cart.discounts](./Cart.yaml) array.  A discount item can be a **RATE** (precentage) or a flat **AMOUNT**.
+
+  ##### OPERATION
+
+  * The system will sum the `discount.value` for all objects with a `discount.type` of `RATE` and return a `discount.total_rate` value in the discount object.
+  * The system will sum the `discount.value` for all objects with a `discount.type` of `AMOUNT` and return a `discount.total_amount` value.
+allOf:
+  - type: object
+    properties:
+      discount_id:
+        type: string
+        description: System Discount record identifier (starts with `discount-`).  If provided the discount object will inherit the system discount values.  Any other value provided in this object will override the inherited value but will not change the system discount record.
+  - $ref: ./Discounts.yaml
+examples:
+  - discount_id: null
+    name: DISCOUNT 1
+    description: A rate/percentage discount example
+    code: D01
+    type: RATE
+    value: 5

@@ -1,0 +1,25 @@
+title: Cart-Taxes
+x-tags:
+  - CART
+  - TAXES
+description: |-
+  Tax object(s) for [cart.taxes](./Cart.yaml) array.  A tax item can be a **RATE** (precentage) or a flat **AMOUNT**.
+
+  ##### OPERATION
+
+  * The system will sum the `tax.value` for all objects with a `tax.type` of `RATE` and return a `tax.total_rate` value in the tax object.
+  * The system will sum the `tax.value` for all objects with a `tax.type` of `AMOUNT` and return a `tax.total_amount` value.
+allOf:
+  - type: object
+    properties:
+      tax_id:
+        type: string
+        description: System Tax record identifier (starts with `tax`).  If provided the tax object will inherit the system tax values.  Any other value provided in this object will override the inherited value but will not change the system tax record.
+  - $ref: ./Taxes.yaml
+examples:
+  - tax_id: null
+    name: Tax 1
+    description: A rate/percentage tax example
+    code: T01
+    type: RATE
+    value: 7.5

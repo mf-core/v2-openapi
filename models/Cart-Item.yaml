@@ -1,4 +1,4 @@
-description: ''
+description: '[Cart](./Cart.yaml) `items` array object schema'
 type: object
 x-examples:
   example-1:
@@ -10,34 +10,60 @@ x-examples:
     ignore_fees: false
     ignore_discounts: false
     ignore_costs: false
+examples:
+  - product_id: null
+    name: Super Widget
+    description: This is the super widget description provided in product lists and customer form item lists and receipts.
+    unit_price: 27.88
+    unit_cost: 10
+    ignore_taxes: false
+    ignore_fees: false
+    ignore_discounts: false
+    ignore_costs: false
 properties:
   product_id:
     type: string
-    description: System Products record identifier (starts with `product-`).  If provided the item will inherit the associated product system values.  Any parameter values provided in this item object will overwrite the inherited values and apply for this cart item object only and will not update the system product.
+    description: System Products record identifier (starts with `product-`).  If provided the item will inherit the associated product system values as default.
+  image_url:
+    type: string
+    description: 'http:// or https:// URL to product image.  Should be square (1:1 ratio), at least 200px'
+    example: 'https://via.placeholder.com/300'
   name:
     type: string
-    minLength: 1
-    description: Product name.  If `product_id` is provided this value will override the inherited system product `name` value.  If `product_id` is not provided this value is REQUIRED
+    description: Product name.  If `product_id` is provided this value will inherit the `product.name` value as default.  If a `product_id` is not provided this value is REQUIRED
+    example: Super Widget
   description:
     type: string
-    minLength: 1
+    example: This is the super widget description provided in product lists and customer payment form items list and receipts.
+    description: Product description.  If `product_id` is provided this value will inherit the `product.description` value as default.
   unit_price:
     type: number
+    description: Price per unit.  If `product_id` is provided will inherit the system `product.unit_price` value as default.  REQUIRED if `product_id` is not provided.
+    example: 24.88
   unit_cost:
     type: number
+    description: Cost per unit.  If `product_id` is provided this value will inherit the system `product.unit_cost` as default.
+    example: 10
+  units_sold:
+    type: integer
+    description: The number of item units sold.
+    example: 1
+    default: 1
   ignore_taxes:
     type: boolean
+    default: false
+    description: Set `true` to ignore the cart tax
   ignore_fees:
     type: boolean
+    description: Set `true` to ignore the cart fee rate
+    default: false
   ignore_discounts:
     type: boolean
+    description: Set `true` to ignore the cart discount rate
+    default: false
   ignore_costs:
     type: boolean
+    description: Set `true` to ignore the cost rate.
+    default: false
 required:
-  - description
-  - unit_price
-  - unit_cost
-  - ignore_taxes
-  - ignore_fees
-  - ignore_discounts
-  - ignore_costs
+  - units_sold
