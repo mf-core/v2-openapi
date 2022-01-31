@@ -1,0 +1,56 @@
+description: Used to add a cost amount to carts and/or products to calculate revenues
+type: object
+x-examples:
+  example-1:
+    name: Cost 1
+    description: This is cost 1
+    code: T01
+    type: RATE
+    value: 6.75
+examples:
+  - name: Cost 1
+    description: Cost 1 is an rate/percentage cost
+    code: T01
+    type: RATE
+    value: 7.5
+  - name: Cost 2
+    description: Cost 2 is an amount/flat cost
+    code: T02
+    type: AMOUNT
+    value: '5.00'
+properties:
+  name:
+    type: string
+    minLength: 1
+    example: Cost 1
+    description: Name of cost
+  description:
+    type: string
+    description: Cost description
+  code:
+    type: string
+    minLength: 1
+    description: Cost Code or other identifier
+    example: T-01
+  type:
+    type: string
+    minLength: 1
+    description: Cost type
+    enum:
+      - RATE
+      - AMOUNT
+    example: RATE
+  value:
+    type:
+      - number
+      - string
+    example: 7.75
+    description: Value for cost `type`.  Use positive value
+required:
+  - name
+  - type
+  - value
+x-tags:
+  - COMMON
+  - SALE
+  - DISCOUNT

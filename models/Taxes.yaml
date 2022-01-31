@@ -1,4 +1,4 @@
-description: ''
+description: Used in carts and terminal sales to apply taxes
 type: object
 x-examples:
   example-1:
@@ -51,6 +51,4 @@ required:
   - type
   - value
 x-tags:
-  - COMMON
-  - SALE
   - TAX
