@@ -6,7 +6,12 @@ description: |-
 
   * Provide a `cart.total_amount` greater than `0` to disable the `cart.total_amount` calculation.
   * Omit the `cart.total_amount` parameter or provide a `null` or `0` value to enable the `cart.total_amount` calculation
-   * CALCULATION:  ((`cart.total_items_amount` + `cart_total_fees_amount` + `cart_total_taxes_amount` + `cart.total_discounts_amount`) - `cart.total_discounts_amount`)
+
+  CALCULATION:
+
+  ```
+  cart.total_items_amount + cart_total_fees_amount + cart_total_taxes_amount + cart.total_discounts_amount) - cart.total_discounts_amount)
+  ```
 
 
   ##### TAXES, FEES, DISCOUNTS and COSTS
