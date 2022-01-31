@@ -15,6 +15,20 @@ allOf:
       cost_id:
         type: string
         description: System Cost record identifier (starts with `cost-`).  If provided the cost object will inherit the system cost values.  Any other value provided in this object will override the inherited value but will not change the system cost record.
+      total_rate:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total cost rate to apply to cart (if `cart.amount_costs` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and cost objects exists in a `cart.cost.data` the value will inherit the sum of all `cart.cost.data` objects that have a `RATE` type.'
+        default: 0
+      total_amount:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total cost amount to apply to cart (if `cart.amount_costs` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and cost objects exists in a `cart.cost.data` the value will inherit the sum of all `cart.cost.data` objects that have an `AMOUNT` type.'
+        default: 0
   - $ref: ./Costs.yaml
 examples:
   - cost_id: null

@@ -53,118 +53,146 @@ paths:
                   total_items: 0
                   id_cart: null
                   taxes:
-                    - id: null
-                      name: Tax 1
-                      description: This is tax 1 description
-                      code: T1
-                      type: RATE
-                      value: 1.5
-                      save_tax: false
-                    - id: null
-                      name: Tax 2
-                      description: This is tax 2 description
-                      code: T2
-                      type: RATE
-                      value: 8.5
-                      save_tax: true
-                    - id: null
-                      name: Tax 3
-                      description: This is tax 3 description
-                      code: T3
-                      type: AMOUNT
-                      value: 5.55
-                      save_tax: true
+                    total_rate: 20
+                    total_amount: 22
+                    data:
+                      - id: null
+                        name: Tax 1
+                        description: This is tax 1 description
+                        code: T1
+                        type: RATE
+                        value: 1.5
+                        save_tax: false
+                      - id: null
+                        name: Tax 2
+                        description: This is tax 2 description
+                        code: T2
+                        type: RATE
+                        value: 8.5
+                        save_tax: true
+                      - id: null
+                        name: Tax 3
+                        description: This is tax 3 description
+                        code: T3
+                        type: AMOUNT
+                        value: 5.55
+                        save_tax: true
                   fees:
-                    - id: null
-                      name: Fee 1
-                      description: This is fee 1 description
-                      code: F1
-                      type: RATE
-                      value: 1.5
-                      save_fee: false
-                    - id: null
-                      name: Fee 2
-                      description: This is fee 2 description
-                      code: F2
-                      type: RATE
-                      value: 8.5
-                      save_fee: true
-                    - id: null
-                      name: Fee 3
-                      description: This is fee 3 description
-                      code: F3
-                      type: AMOUNT
-                      value: 5.55
-                      save_fee: true
+                    total_rate: 0
+                    total_amount: 0
+                    data:
+                      - id: null
+                        name: Fee 1
+                        description: This is fee 1 description
+                        code: F1
+                        type: RATE
+                        value: 1.5
+                        save_fee: false
+                      - id: null
+                        name: Fee 2
+                        description: This is fee 2 description
+                        code: F2
+                        type: RATE
+                        value: 8.5
+                        save_fee: true
+                      - id: null
+                        name: Fee 3
+                        description: This is fee 3 description
+                        code: F3
+                        type: AMOUNT
+                        value: 5.55
+                        save_fee: true
                   discounts:
-                    - id: null
-                      name: Discount 1
-                      description: This is discount 1 description
-                      code: D1
-                      type: RATE
-                      value: 1.5
-                      save_discount: false
-                    - id: null
-                      name: Discount 2
-                      description: This is discount 2 description
-                      code: D2
-                      type: RATE
-                      value: 8.5
-                      save_discount: true
-                    - id: null
-                      name: Discount 3
-                      description: This is discount 3 description
-                      code: D3
-                      type: AMOUNT
-                      value: 5.55
-                      save_discount: true
+                    total_rate: 0
+                    total_amount: 0
+                    data:
+                      - id: null
+                        name: Discount 1
+                        description: This is discount 1 description
+                        code: D1
+                        type: RATE
+                        value: 1.5
+                        save_discount: false
+                      - id: null
+                        name: Discount 2
+                        description: This is discount 2 description
+                        code: D2
+                        type: RATE
+                        value: 8.5
+                        save_discount: true
+                      - id: null
+                        name: Discount 3
+                        description: This is discount 3 description
+                        code: D3
+                        type: AMOUNT
+                        value: 5.55
+                        save_discount: true
                   costs:
-                    - id: null
-                      name: Cost 1
-                      description: This is cost 1 description
-                      code: C1
-                      type: RATE
-                      value: 1.5
-                      save_cost: false
-                    - id: null
-                      name: Cost 2
-                      description: This is cost 2 description
-                      code: C2
-                      type: RATE
-                      value: 8.5
-                      save_cost: true
-                    - id: null
-                      name: Fee 3
-                      description: This is cost 3 description
-                      code: C3
-                      type: AMOUNT
-                      value: 5.55
-                      save_cost: true
+                    total_rate: 0
+                    total_amount: 0
+                    data:
+                      - id: null
+                        name: Cost 1
+                        description: This is cost 1 description
+                        code: C1
+                        type: RATE
+                        value: 1.5
+                        save_cost: false
+                      - id: null
+                        name: Cost 2
+                        description: This is cost 2 description
+                        code: C2
+                        type: RATE
+                        value: 8.5
+                        save_cost: true
+                      - id: null
+                        name: Fee 3
+                        description: This is cost 3 description
+                        code: C3
+                        type: AMOUNT
+                        value: 5.55
+                        save_cost: true
                   items:
-                    - id: JJ123980923
-                      name: Widget A
-                      description: This widget is a good widget
-                      image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
-                      unit_price: 12.22
-                      unit_cost: 1.55
-                      units_sold: 2
-                      ignore_tax: false
-                      ignore_fees: false
-                      ignore_discounts: false
-                      ignore_costs: false
-                      save_item: true
-                    - id: null
-                      name: Widget B
-                      description: This widget is a not a very good widget
-                      image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
-                      unit_price: 16.18
-                      unit_cost: 4.12
-                      units_sold: 3
-                      ignore_tax: false
-                      ignore_fees: false
-                      ignore_discounts: false
-                      ignore_costs: false
-                      save_item: true
+                    total_rate: 0
+                    total_amount: 0
+                    data:
+                      - id: JJ123980923
+                        name: Widget A
+                        description: This widget is a good widget
+                        image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
+                        unit_price: 12.22
+                        unit_cost: 1.55
+                        units_sold: 2
+                        ignore_tax: false
+                        ignore_fees: false
+                        ignore_discounts: false
+                        ignore_costs: false
+                        save_item: true
+                      - id: null
+                        name: Widget B
+                        description: This widget is a not a very good widget
+                        image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
+                        unit_price: 16.18
+                        unit_cost: 4.12
+                        units_sold: 3
+                        ignore_tax: false
+                        ignore_fees: false
+                        ignore_discounts: false
+                        ignore_costs: false
+                        save_item: true
+                  shipping:
+                    total: 12
+                    carrier: FEDEX
+                    tracking: '1234567890'
+                    ship_to_address:
+                      contact: null
+                      street_1: 1446 N. Padre Ln
+                      street_2: Suite 4
+                      street_3: Bldg 7
+                      city: Miami
+                      state_code: FL
+                      postal_code: '33140'
+                      country_code: US
         description: ''
       description: Create a cart of product items
     patch:

@@ -15,6 +15,20 @@ allOf:
       tax_id:
         type: string
         description: System Tax record identifier (starts with `tax`).  If provided the tax object will inherit the system tax values.  Any other value provided in this object will override the inherited value but will not change the system tax record.
+      total_rate:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total tax rate to apply to cart (if `cart.amount_taxes` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and tax objects exists in a `cart.tax.data` the value will inherit the sum of all `cart.tax.data` objects that have a `RATE` type.'
+        default: 0
+      total_amount:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total tax amount to apply to cart (if `cart.amount_taxes` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and tax objects exists in a `cart.tax.data` the value will inherit the sum of all `cart.tax.data` objects that have an `AMOUNT` type.'
+        default: 0
   - $ref: ./Taxes.yaml
 examples:
   - tax_id: null

@@ -3,6 +3,24 @@ type: object
 x-tags:
   - CART
   - SHIPPING
+examples:
+  - shipping_id: EXTERNAL-234234
+    total_amount: 12.45
+description: Reference external system as `id`
 properties:
-  id:
+  shipping_id:
     type: string
+    description: |-
+      * Provide an external system id to associate the cart shipping object.
+      * Provide a system [Shipping](id) (starts with `shipping-`) to inherit the shipping record values.  If a system `shipping_id` is used all other values provided in this object will be ignored.
+  total_amount:
+    type:
+      - string
+      - number
+    example: 12.45
+    description: |-
+      * If a `shipping_id` is not provided enter the total amount for shipping.  
+      * If a `total_amount` value is not provided then this value will be calculated from the sum of the `shipping.freight.amount`, `shipping.taxes.amount` and `shipping.fees.amount`
+  freight:
+    type: object
+    description: Freight / carrier details

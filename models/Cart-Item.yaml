@@ -1,4 +1,7 @@
-description: '[Cart](./Cart.yaml) `items` array object schema'
+description: |+
+  [Cart](./Cart.yaml) `items` array object schema
+
+
 type: object
 x-examples:
   example-1:
@@ -13,17 +16,22 @@ x-examples:
 examples:
   - product_id: null
     name: Super Widget
-    description: This is the super widget description provided in product lists and customer form item lists and receipts.
+    description: This is the super widget description usually provided in product lists and customer form item lists and receipts.
+    image_url: null
     unit_price: 27.88
     unit_cost: 10
-    ignore_taxes: false
-    ignore_fees: false
-    ignore_discounts: false
-    ignore_costs: false
+    units_sold: 2
+    ignore_cart_taxes: false
+    ignore_cart_fees: false
+    ignore_cart_discounts: false
+    ignore_cart_costs: false
+    ignore_product_costs: false
 properties:
   product_id:
     type: string
-    description: System Products record identifier (starts with `product-`).  If provided the item will inherit the associated product system values as default.
+    description: Product ID.  Provide a system product ID (beginning with `product-` to fetch and apply the system product values as the item default values.  Provide an external system product ID to associate item with external backends.
+    default: uuid
+    example: 'null'
   image_url:
     type: string
     description: 'http:// or https:// URL to product image.  Should be square (1:1 ratio), at least 200px'
@@ -49,21 +57,15 @@ properties:
     description: The number of item units sold.
     example: 1
     default: 1
-  ignore_taxes:
+  ignore_cart_taxes:
     type: boolean
     default: false
-    description: Set `true` to ignore the cart tax
-  ignore_fees:
+    description: Set `true` to ignore the `cart.tax_rate` and calculate the `cart.amount_total` using the item `taxes_total`.
+  ignore_cart_fees:
     type: boolean
-    description: Set `true` to ignore the cart fee rate
     default: false
-  ignore_discounts:
-    type: boolean
-    description: Set `true` to ignore the cart discount rate
-    default: false
-  ignore_costs:
-    type: boolean
-    description: Set `true` to ignore the cost rate.
-    default: false
+    description: Set `true` to ignore the cart fees and only use the item `fees_total`.
 required:
+  - image_url
+  - unit_price
   - units_sold

@@ -15,6 +15,20 @@ allOf:
       discount_id:
         type: string
         description: System Discount record identifier (starts with `discount-`).  If provided the discount object will inherit the system discount values.  Any other value provided in this object will override the inherited value but will not change the system discount record.
+      total_rate:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total discount rate to apply to cart (if `cart.amount_discounts` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and discount objects exists in a `cart.discount.data` the value will inherit the sum of all `cart.discount.data` objects that have a `RATE` type.'
+        default: 0
+      total_amount:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total discount amount to apply to cart (if `cart.amount_discounts` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and discount objects exists in a `cart.discount.data` the value will inherit the sum of all `cart.discount.data` objects that have an `AMOUNT` type.'
+        default: 0
   - $ref: ./Discounts.yaml
 examples:
   - discount_id: null

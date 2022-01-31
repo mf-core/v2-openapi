@@ -1,6 +1,18 @@
 title: Cart
 type: object
-description: ''
+description: |-
+  ##### CART TOTAL AMOUNT RULES
+  The `cart.total_amount` is the total amount for all items, taxes, discounts, fees and shipping charges in the cart.
+
+  * Provide a `cart.total_amount` greater than `0` to disable the `cart.total_amount` calculation.
+  * Omit the `cart.total_amount` parameter or provide a `null` or `0` value to enable the `cart.total_amount` calculation
+   * CALCULATION:  ((`cart.total_items_amount` + `cart_total_fees_amount` + `cart_total_taxes_amount` + `cart.total_discounts_amount`) - `cart.total_discounts_amount`)
+
+
+  ##### TAXES, FEES, DISCOUNTS and COSTS
+
+  The system provides a way to set and apply a tax rate for all cart items as follows:
+  * Add a 
 x-tags:
   - CART
 examples:
@@ -14,60 +26,25 @@ properties:
     type: string
     example: This is a cart description
     description: Cart description
-  amount_total:
+  id_cart:
+    type: string
+    description: 'Cart id to associate this cart with an external backend.  If omitted or null the system will assign an `id_cart` value according to the pattern set in the [Cart Settings](./Cart-Settings)'
+    example: external-3492849248
+  total_amount:
     type:
       - string
       - number
-    example: 0
-    format: float
-    description: 'The cart total amount.  If provided and greater than `0` all cart system calculations will be disabled.  If not provided the system will sum the values or results from the `amount_subtotal`, `amount_fees`, `amount_discounts`, `amount_costs` and `amount_shipping`'
-  amount_subtotal:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart subtotal amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.items](Cart-Items.yaml) array object is provided the system will calculate the `amount_subtotal` value from the items provided in the array.'
-  amount_taxes:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart total taxes amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.tax](Cart-Tax.yaml) array object is provided the system will calculate `amount_taxes` value.'
-  amount_fees:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart total fees amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.fee](Cart-Fee.yaml) array object is provided the system will calculate `amount_fees` value.'
-  amount_discounts:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart total discounts amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.discount](Cart-Discount.yaml) array object is provided the system will calculate `amount_discounts` value.'
-  amount_costs:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart total costs amount.  If parameter omitted or value = `0` or `null` at least 1 valid [cart.cost](Cart-Costs.yaml) array object is provided the system will calculate `amount_costs` value.'
-  amount_shipping:
-    type:
-      - string
-      - number
-    example: 0
-    format: float
-    description: 'The cart shipping amount.  If parameter omitted or value = `0` or `null` at a valid [cart.shipping](Cart-Discount.yaml) object is provided the `amount_shipping` will inherit the `cart.shipping.total` value.'
+    description: 'The total amount for cart including items subtotal, taxes, fees, discounts and shipping.  If a value is provided the system WILL NOT perform any calculations  and return the cart `total_items`, `total_taxes`, `total_fees`, `total_costs`, `total_shipping`, `total_tax_rate` and `total_tax_amount` values.'
+    example: external-3492849248
   items:
-    type: array
     description: Cart items array
-    items:
-      $ref: ./Cart-Item.yaml
+    type: object
+    properties:
+      subtotal:
+        type: string
+        description: |-
+          * Add subtotal value for all items sold.  If value is greater than `0` the `items.data` subtotal will not be calculated.
+          * If `subtotal` parameter is omitted or the value is `null` or `0`
   taxes:
     description: Cart Taxes array
     type: array

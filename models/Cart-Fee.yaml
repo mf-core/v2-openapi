@@ -15,6 +15,20 @@ allOf:
       fee_id:
         type: string
         description: System Fee record identifier (starts with `fee-`).  If provided the fee object will inherit the system fee values.  Any other value provided in this object will override the inherited value but will not change the system fee record.
+      total_rate:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total fee rate to apply to cart (if `cart.amount_fees` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and fee objects exists in a `cart.fee.data` the value will inherit the sum of all `cart.fee.data` objects that have a `RATE` type.'
+        default: 0
+      total_amount:
+        type:
+          - string
+          - number
+        example: 0
+        description: 'Total fee amount to apply to cart (if `cart.amount_fees` is omitted, null or 0).  If parameter is omitted or value is `null` or `0` and fee objects exists in a `cart.fee.data` the value will inherit the sum of all `cart.fee.data` objects that have an `AMOUNT` type.'
+        default: 0
   - $ref: ./Fees.yaml
 examples:
   - fee_id: null
