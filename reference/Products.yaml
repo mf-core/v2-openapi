@@ -19,7 +19,37 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-paths: {}
+paths:
+  /carts:
+    get:
+      summary: List or Fetch Carts
+      tags:
+        - CART
+      responses: {}
+      operationId: get-carts
+    post:
+      summary: Create Cart
+      tags:
+        - CART
+      responses: {}
+      operationId: post-carts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Cart.yaml
+    patch:
+      summary: Patch Cart
+      tags:
+        - CART
+      responses: {}
+      operationId: patch-carts
+    delete:
+      summary: Remove Cart
+      tags:
+        - CART
+      responses: {}
+      operationId: delete-carts
 components:
   schemas: {}
   securitySchemes:
