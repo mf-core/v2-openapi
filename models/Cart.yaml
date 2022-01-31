@@ -1,23 +1,6 @@
 title: Cart
 type: object
-description: |-
-  ##### CART TOTAL AMOUNT RULES
-  The `cart.total_amount` is the total amount for all items, taxes, discounts, fees and shipping charges in the cart.
-
-  * Provide a `cart.total_amount` greater than `0` to disable the `cart.total_amount` calculation.
-  * Omit the `cart.total_amount` parameter or provide a `null` or `0` value to enable the `cart.total_amount` calculation
-
-  CALCULATION:
-
-  ```
-  cart.total_items_amount + cart_total_fees_amount + cart_total_taxes_amount + cart.total_discounts_amount) - cart.total_discounts_amount)
-  ```
-
-
-  ##### TAXES, FEES, DISCOUNTS and COSTS
-
-  The system provides a way to set and apply a tax rate for all cart items as follows:
-  * Add a 
+description: ''
 x-tags:
   - CART
 examples:
@@ -33,14 +16,71 @@ properties:
     description: Cart description
   id_cart:
     type: string
-    description: 'Cart id to associate this cart with an external backend.  If omitted or null the system will assign an `id_cart` value according to the pattern set in the [Cart Settings](./Cart-Settings)'
+    description: |-
+      An id to reference this cart and/or associate the cart with an external backend.  
+
+      If omitted or null the system will assign an `id_cart` value according to the pattern set in the [Cart Settings](./Cart-Settings)
     example: external-3492849248
   total_amount:
     type:
       - string
       - number
-    description: 'The total amount for cart including items subtotal, taxes, fees, discounts and shipping.  If a value is provided the system WILL NOT perform any calculations  and return the cart `total_items`, `total_taxes`, `total_fees`, `total_costs`, `total_shipping`, `total_tax_rate` and `total_tax_amount` values.'
-    example: external-3492849248
+    description: |-
+      The `cart.total_amount` is the total amount for all items, taxes, discounts, fees and shipping charges in the cart.
+
+      * Provide a `cart.total_amount` greater than `0` to disable the `cart.total_amount` calculation.
+      * Omit the `cart.total_amount` parameter or provide a `null` or `0` value to enable the `cart.total_amount` calculation.
+    example: 0
+  total_items_amount:
+    type:
+      - string
+      - number
+    description: |-
+      The `cart.total_items_amount` is the total amount for all items sold excluding taxes, fees and discounts
+
+      * Provide a `cart.total_items_amount` greater than `0` or
+      * Omit the `cart.total_items_amount` parameter or provide a `null` or `0` value to inherit the `cart.items.total` value
+    example: 0
+  total_fees_amount:
+    type:
+      - string
+      - number
+    description: |-
+      The `cart.total_fees_amount` is the total amount for all fees
+
+      * Provide a `cart.total_fee_amount` greater than `0` or
+      * Omit the `cart.total_fee_amount` parameter or provide a `null` or `0` value to inherit the `cart.fees.total` value
+    example: 0
+  total_taxes_amount:
+    type:
+      - string
+      - number
+    description: |-
+      The `cart.total_taxes_amount` is the total amount for all taxes
+
+      * Provide a `cart.total_tax_amount` greater than `0` or
+      * Omit the `cart.total_tax_amount` parameter or provide a `null` or `0` value to inherit the `cart.taxes.total` value
+    example: 0
+  total_discounts_amount:
+    type:
+      - string
+      - number
+    description: |-
+      The `cart.total_discounts_amount` is the total amount for discounts
+
+      * Provide a `cart.total_discount_amount` greater than `0` or
+      * Omit the `cart.total_discount_amount` parameter or provide a `null` or `0` value to inherit the `cart.discounts.total` value
+    example: 0
+  total_costs_amount:
+    type:
+      - string
+      - number
+    description: |-
+      The `cart.total_costs_amount` is the total costs associated with the cart for revenue calculations and projections
+
+      * Provide a `cart.total_cost_amount` greater than `0` or
+      * Omit the `cart.total_cost_amount` parameter or provide a `null` or `0` value to inherit the `cart.costs.total` value
+    example: 0
   items:
     description: Cart items array
     type: object
