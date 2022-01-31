@@ -38,6 +38,135 @@ paths:
           application/json:
             schema:
               $ref: ../models/Cart.yaml
+            examples:
+              System Calculated (full):
+                value:
+                  name: Cart A
+                  description: Cart A Description
+                  amount_total: 0
+                  amount_subtotal: 0
+                  amount_taxes: 0
+                  amount_fees: 0
+                  amount_discounts: 0
+                  amount_costs: 0
+                  amount_shipping: 0
+                  total_items: 0
+                  id_cart: null
+                  taxes:
+                    - id: null
+                      name: Tax 1
+                      description: This is tax 1 description
+                      code: T1
+                      type: RATE
+                      value: 1.5
+                      save_tax: false
+                    - id: null
+                      name: Tax 2
+                      description: This is tax 2 description
+                      code: T2
+                      type: RATE
+                      value: 8.5
+                      save_tax: true
+                    - id: null
+                      name: Tax 3
+                      description: This is tax 3 description
+                      code: T3
+                      type: AMOUNT
+                      value: 5.55
+                      save_tax: true
+                  fees:
+                    - id: null
+                      name: Fee 1
+                      description: This is fee 1 description
+                      code: F1
+                      type: RATE
+                      value: 1.5
+                      save_fee: false
+                    - id: null
+                      name: Fee 2
+                      description: This is fee 2 description
+                      code: F2
+                      type: RATE
+                      value: 8.5
+                      save_fee: true
+                    - id: null
+                      name: Fee 3
+                      description: This is fee 3 description
+                      code: F3
+                      type: AMOUNT
+                      value: 5.55
+                      save_fee: true
+                  discounts:
+                    - id: null
+                      name: Discount 1
+                      description: This is discount 1 description
+                      code: D1
+                      type: RATE
+                      value: 1.5
+                      save_discount: false
+                    - id: null
+                      name: Discount 2
+                      description: This is discount 2 description
+                      code: D2
+                      type: RATE
+                      value: 8.5
+                      save_discount: true
+                    - id: null
+                      name: Discount 3
+                      description: This is discount 3 description
+                      code: D3
+                      type: AMOUNT
+                      value: 5.55
+                      save_discount: true
+                  costs:
+                    - id: null
+                      name: Cost 1
+                      description: This is cost 1 description
+                      code: C1
+                      type: RATE
+                      value: 1.5
+                      save_cost: false
+                    - id: null
+                      name: Cost 2
+                      description: This is cost 2 description
+                      code: C2
+                      type: RATE
+                      value: 8.5
+                      save_cost: true
+                    - id: null
+                      name: Fee 3
+                      description: This is cost 3 description
+                      code: C3
+                      type: AMOUNT
+                      value: 5.55
+                      save_cost: true
+                  items:
+                    - id: JJ123980923
+                      name: Widget A
+                      description: This widget is a good widget
+                      image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
+                      unit_price: 12.22
+                      unit_cost: 1.55
+                      units_sold: 2
+                      ignore_tax: false
+                      ignore_fees: false
+                      ignore_discounts: false
+                      ignore_costs: false
+                      save_item: true
+                    - id: null
+                      name: Widget B
+                      description: This widget is a not a very good widget
+                      image_url: 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/widgets-bundle/images/icon.png'
+                      unit_price: 16.18
+                      unit_cost: 4.12
+                      units_sold: 3
+                      ignore_tax: false
+                      ignore_fees: false
+                      ignore_discounts: false
+                      ignore_costs: false
+                      save_item: true
+        description: ''
+      description: Create a cart of product items
     patch:
       summary: Patch Cart
       tags:
