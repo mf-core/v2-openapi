@@ -32,12 +32,23 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Cart.yaml
     patch:
       summary: ''
       operationId: patch-carts
       responses:
         '200':
           description: OK
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Cart.yaml
     delete:
       summary: ''
       operationId: delete-carts
