@@ -31,7 +31,7 @@ properties:
     example: 'null'
   subtotal:
     type: string
-    example: 'null'
+    example: '0'
     description: |-
       Provide a fixed subtotal amount for this item.  If value provided is > `0` the item `unit_price` * `units_sold` calculation will be ignored
 
@@ -40,7 +40,7 @@ properties:
       > If `cart.total_amount` parameter is omitted or the value is `null` or `0` this value is required.
   fees:
     type: string
-    example: 'null'
+    example: '0'
     description: |-
       Provide a fixed fee amount for this item.  If value provided is > `0` the item's fee calculations will be ignored.
 
@@ -49,7 +49,7 @@ properties:
       If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_fees` is not `true` the system will calculate and apply the system's product fee amount (if any) + the item's `subtotal` value * the system's product fees rate value (if any).
   taxes:
     type: string
-    example: 'null'
+    example: '0'
     description: |-
       Provide a fixed tax amount for this item.  If value provided is > `0` the item's tax calculations will be ignored.
 
@@ -58,7 +58,7 @@ properties:
       If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_taxes` is not `true` the system will calculate and apply the system's product tax amount (if any) + the item's `subtotal` value * the system's product taxes rate value (if any).
   discounts:
     type: string
-    example: 'null'
+    example: '0'
     description: |-
       Provide a fixed discount amount for this item.  If value provided is > `0` the item's discount calculations will be ignored.
 
@@ -67,7 +67,7 @@ properties:
       If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_discounts` is not `true` the system will calculate and apply the system's product discount amount (if any) + the item's `subtotal` value * the system's product discount rate value (if any).
   costs:
     type: string
-    example: 'null'
+    example: '0'
     description: |-
       Provide a fixed cost amount for this item.  If value provided is > `0` the item's cost calculations will be ignored.
 
