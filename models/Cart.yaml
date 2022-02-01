@@ -26,7 +26,6 @@ properties:
       - number
     description: |-
       The `cart.total_amount` is the total amount for all items, taxes, discounts, fees and shipping charges in the cart.
-
       * A `cart.total_amount` greater than `0` will disable the `cart.total_amount` calculation.
       * If the `cart.total_amount` parameter is omitted or the value is `null` or `0` a `cart.items.subtotal` value is required to calculate the `cart.total_amount`
     example: 0
