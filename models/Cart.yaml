@@ -38,6 +38,10 @@ properties:
         description: |-
           * The subtotal amount value for all items sold (minus taxes, fees, discount and costs).  If a value provided that is greater than `0`, the `cart.items.data` object array subtotal amount will not be calculated.
           * If the `cart.items.subtotal` parameter is omitted or the value is `null` or `0` the value will calculated from each object in the `cart.items.data` (`unit_price` * `units_sold`)
+      data:
+        type: array
+        items:
+          $ref: ./Cart-Item.yaml
   taxes:
     description: Cart Taxes array
     type: array
