@@ -28,17 +28,17 @@ properties:
       The `cart.total_amount` is the total amount for all items, taxes, discounts, fees and shipping charges in the cart.
 
       * A `cart.total_amount` greater than `0` will disable the `cart.total_amount` calculation.
-      * If the `cart.total_amount` parameter is omitted or the value is `null` or `0` the `cart.total_amount` will be calculated from the sum of (`cart.items.total` + `cart.fees.total` + `cart.taxes.total`) - `cart.discounts.total`.
+      * If the `cart.total_amount` parameter is omitted or the value is `null` or `0` a `cart.items.subtotal` value is required to calculate the `cart.total_amount`
     example: 0
   items:
-    description: Cart items object.  A `cart.items.total` is required if `cart.total_amount` is omitted or the value is `null` or `0`
+    description: Cart items object.  A `cart.items.subtotal` value is required if `cart.total_amount` is omitted or the value is `null` or `0`
     type: object
     properties:
-      total:
+      subtotal:
         type: string
         description: |-
-          * Add a total amount value for all items sold minus taxes, fees, discount and costs.  If value provided is greater than `0` the `item.data` object array total will not be calculated.
-          * If the `total_amount` parameter is omitted or the value is `null` or `0` the value will calculated from each object in the `item.data` (`unit_price` * `units_sold`)
+          * The subtotal amount value for all items sold (minus taxes, fees, discount and costs).  If a value provided that is greater than `0`, the `cart.items.data` object array subtotal amount will not be calculated.
+          * If the `cart.items.subtotal` parameter is omitted or the value is `null` or `0` the value will calculated from each object in the `cart.items.data` (`unit_price` * `units_sold`)
   taxes:
     description: Cart Taxes array
     type: array
