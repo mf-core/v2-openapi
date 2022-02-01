@@ -28,8 +28,16 @@ properties:
   product_id:
     type: string
     description: Product ID.  Provide a system product ID (beginning with `product-` to fetch and apply the system product values as the item default values.  Provide an external system product ID to associate item with external backends.
-    default: uuid
     example: 'null'
+  subtotal:
+    type: string
+    example: 'null'
+    description: |-
+      Provide a fixed subtotal amount for this item.  If value provided is > `0` the item `unit_price` * `units_sold` calculation will be ignored
+
+      If parameter is omitted or value is `null` or `0` the system will calculate and apply the item's `unit_price` * `units_sold` value
+
+      > If `cart.total_amount` parameter is omitted or the value is `null` or `0` this value is required.
   image_url:
     type: string
     description: 'http:// or https:// URL to product image.  Should be square (1:1 ratio), at least 200px'
@@ -58,19 +66,39 @@ properties:
   ignore_cart_taxes:
     type: boolean
     default: false
-    description: 'Set `true` to ignore the `cart.taxes.rate`.  If this parameter is omitted or value is `null` or `0` AND this item''s `taxes` value is omitted, `null` or `0` the system will use the `cart.taxes.rate` * the item''s (`unit_price` * `unit_sold`) and apply it to this item''s `taxes` value.'
+    description: |-
+      Set `true` to ignore the `cart.taxes.rate`.  
+
+      If this parameter is omitted or value is `null` or `0` AND this item's `taxes` value is omitted, `null` or `0` the system will use the `cart.taxes.rate` * the item's (`unit_price` * `unit_sold`) and apply it to this item's `taxes` value.
+
+      > This parameter is ignored if a value is provided in this item's `taxes` paramter.
   ignore_cart_fees:
     type: boolean
     default: false
-    description: 'Set `true` to ignore the `cart.fees.rate`.  If this parameter is omitted or value is `null` or `0` AND this item''s `fees` value is omitted, `null` or `0` the system will use the `cart.fees.rate` * the item''s (`unit_price` * `unit_sold`) and apply it to this item''s `fees` value'
+    description: |-
+      Set `true` to ignore the `cart.fees.rate`.  
+
+      If this parameter is omitted or value is `null` or `0` AND this item's `fees` value is omitted, `null` or `0` the system will use the `cart.fees.rate` * the item's (`unit_price` * `unit_sold`) and apply it to this item's `fees` value.
+
+      > This parameter is ignored if a value is provided in this item's `fees` parameter.
   ignore_cart_discounts:
     type: boolean
     default: false
-    description: 'Set `true` to ignore the `cart.discounts.rate`.  If this parameter is omitted or value is `null` or `0` AND this item''s `discounts` value is omitted, `null` or `0` the system will use the `cart.discounts.rate` * the item''s (`unit_price` * `unit_sold`) and apply it to this item''s `discounts` value'
+    description: |-
+      Set `true` to ignore the `cart.discounts.rate`.  
+
+      If this parameter is omitted or value is `null` or `0` AND this item's `discounts` value is omitted, `null` or `0` the system will use the `cart.discounts.rate` * the item's (`unit_price` * `unit_sold`) and apply it to this item's `discounts` value.
+
+      > This parameter is ignored if a value is provided in this item's `discounts` parameter.
   ignore_cart_costs:
     type: boolean
     default: false
-    description: 'Set `true` to ignore the `cart.costs.rate`.  If this parameter is omitted or value is `null` or `0` AND this item''s `costs` value is omitted, `null` or `0` the system will use the `cart.costs.rate` * the item''s (`unit_price` * `unit_sold`) and apply it to this item''s `costs` value'
+    description: |-
+      Set `true` to ignore the `cart.costs.rate`.  
+
+      If this parameter is omitted or value is `null` or `0` AND this item's `costs` value is omitted, `null` or `0` the system will use the `cart.costs.rate` * the item's (`unit_price` * `unit_sold`) and apply it to this item's `costs` value.
+
+      > This parameter is ignored if a value is provided in this item's `costs` parameter.
   ignore_product_taxes:
     type: boolean
     default: false
@@ -79,7 +107,7 @@ properties:
 
       If this parameter is omitted or value is `false` AND this item's `taxes` value is omitted, `null` or `0` the system will apply the product's tax amount and the product's tax rate * the item's (`unit_price` * `unit_sold`) and apply it to this item's `taxes` value.
 
-      > NOTE:  If both the item's `ignore_cart_taxes` and `ignore_product_taxes` are omitted or set to `false`, the item's `taxes` value will be a sum of both values.
+      > If both the item's `ignore_cart_taxes` and `ignore_product_taxes` are omitted or set to `false`, the item's `taxes` value will be a sum of both values.
   ignore_product_fees:
     type: boolean
     default: false
@@ -88,7 +116,7 @@ properties:
 
       If this parameter is omitted or value is `false` AND this item's `fees` value is omitted, `null` or `0` the system will apply the product's fee amount and the product's fee rate * the item's (`unit_price` * `unit_sold`) and apply it to this item's `fees` value.
 
-      > NOTE:  If both the item's `ignore_cart_fees` and `ignore_product_fees` are omitted or set to `false`, the item's `fees` value will be a sum of both values.
+      > If both the item's `ignore_cart_fees` and `ignore_product_fees` are omitted or set to `false`, the item's `fees` value will be a sum of both values.
   ignore_product_discounts:
     type: boolean
     default: false
@@ -97,7 +125,7 @@ properties:
 
       If this parameter is omitted or value is `false` AND this item's `discount` value is omitted, `null` or `0` the system will apply the product's discount amount and the product's discount rate * the item's (`unit_price` * `unit_sold`) and apply it to this item's `discounts` value.
 
-      > NOTE:  If both the item's `ignore_cart_discounts` and `ignore_product_discounts` are omitted or set to `false`, the item's `discounts` value will be a sum of both values.
+      > If both the item's `ignore_cart_discounts` and `ignore_product_discounts` are omitted or set to `false`, the item's `discounts` value will be a sum of both values.
   ignore_product_costs:
     type: boolean
     default: false
@@ -106,7 +134,7 @@ properties:
 
       If this parameter is omitted or value is `false` AND this item's `cost` value is omitted, `null` or `0` the system will apply the product's cost amount and the product's cost rate * the item's (`unit_price` * `unit_sold`) and apply it to this item's `costs` value.
 
-      > NOTE:  If both the item's `ignore_cart_costs` and `ignore_product_costs` are omitted or set to `false`, the item's `costs` will be a sum of both values.
+      > If both the item's `ignore_cart_costs` and `ignore_product_costs` are omitted or set to `false`, the item's `costs` will be a sum of both values.
 required:
   - name
   - unit_price
