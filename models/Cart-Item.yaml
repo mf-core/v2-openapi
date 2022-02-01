@@ -38,10 +38,42 @@ properties:
       If parameter is omitted or value is `null` or `0` the system will calculate and apply the item's `unit_price` * `units_sold` value
 
       > If `cart.total_amount` parameter is omitted or the value is `null` or `0` this value is required.
-  image_url:
+  fees:
     type: string
-    description: 'http:// or https:// URL to product image.  Should be square (1:1 ratio), at least 200px'
-    example: 'https://via.placeholder.com/300'
+    example: 'null'
+    description: |-
+      Provide a fixed fee amount for this item.  If value provided is > `0` the item's fee calculations will be ignored.
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item's `ignore_cart_fees` is not `true` the system will calculate and apply the item's `subtotal` value * the `cart.fees.rate` value (if any).
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_fees` is not `true` the system will calculate and apply the system's product fee amount (if any) + the item's `subtotal` value * the system's product fees rate value (if any).
+  taxes:
+    type: string
+    example: 'null'
+    description: |-
+      Provide a fixed tax amount for this item.  If value provided is > `0` the item's tax calculations will be ignored.
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item's `ignore_cart_taxes` is not `true` the system will calculate and apply the item's `subtotal` value * the `cart.taxes.rate` value (if any).
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_taxes` is not `true` the system will calculate and apply the system's product tax amount (if any) + the item's `subtotal` value * the system's product taxes rate value (if any).
+  discounts:
+    type: string
+    example: 'null'
+    description: |-
+      Provide a fixed discount amount for this item.  If value provided is > `0` the item's discount calculations will be ignored.
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item's `ignore_cart_discounts` is not `true` the system will calculate and apply the item's `subtotal` value * the `cart.discounts.rate` value (if any).
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_discounts` is not `true` the system will calculate and apply the system's product discount amount (if any) + the item's `subtotal` value * the system's product discount rate value (if any).
+  costs:
+    type: string
+    example: 'null'
+    description: |-
+      Provide a fixed cost amount for this item.  If value provided is > `0` the item's cost calculations will be ignored.
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item's `ignore_cart_costs` is not `true` the system will calculate and apply the item's `subtotal` value * the `cart.costs.rate` value (if any).
+
+      If this parameter is omitted or the value is `null` or `0` the AND this item has been fetched from the system (via `product_id`) AND the `ignore_product_costs` is not `true` the system will calculate and apply the system's product cost amount (if any) + the item's `subtotal` value * the system's product cost rate value (if any).
   name:
     type: string
     description: Product name.  If `product_id` is provided this value will inherit the `product.name` value as default.  If a `product_id` is not provided this value is REQUIRED
@@ -50,6 +82,10 @@ properties:
     type: string
     example: This is the super widget description provided in product lists and customer payment form items list and receipts.
     description: Product description.  If `product_id` is provided this value will inherit the `product.description` value as default.
+  image_url:
+    type: string
+    description: 'http:// or https:// URL to product image.  Should be square (1:1 ratio), at least 200px'
+    example: 'https://via.placeholder.com/300'
   unit_price:
     type: number
     description: Price per unit.  If `product_id` is provided will inherit the system `product.unit_price` value as default.  REQUIRED if `product_id` is not provided.
