@@ -10,12 +10,6 @@ info:
     url: Base.do
     email: rjpalermo@live.com
 servers:
-  - url: 'http://localhost:3030'
-    description: Development
-  - url: 'http://v2-invoices-app.dev.vyapay.com'
-    description: Staging (API Server)
-  - url: 'http://v2-invoices-app.vyapay.com'
-    description: Production (API Server)
   - url: 'http://test-api.vyapay.com'
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
