@@ -4,11 +4,11 @@ info:
   version: '1.0'
   summary: VyaPay API
   description: |-
-    VyaPay API.
+    VyaPay API
   contact:
-    name: Russ Palermo
-    url: Base.do
-    email: rjpalermo@live.com
+    name: Technical Support
+    url: https://vyapay.com
+    email: support@vyapay.com
 servers:
   - url: 'http://test-api.vyapay.com'
     description: Test (API Gateway)
