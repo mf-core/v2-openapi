@@ -31,7 +31,7 @@ components:
       name: vyalynk-app-id
       type: apiKey
       in: header
-      description: API Gateway Application Authorization.  Use `T6554252567241061980` for testing.
+      description: API Gateway Application Authorization.  Use `APP-T6554252567241061980` for testing.
 security:
   - jwt: []
   - applicationKey: []
