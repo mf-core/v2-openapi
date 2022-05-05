@@ -16,7 +16,51 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-paths: {}
+tags: [
+  "COMMON",
+  "TRANSACTIONS",
+  "BILLING",
+  "CUSTOMERS",
+  "PRODUCTS"
+]
+paths:
+  '/addresses/{address_id}':
+    parameters:
+      - $ref: '#/components/parameters/address-id'
+    get:
+      summary: Fetch address
+      tags:
+        - ADDRESSES
+      responses: {}
+      operationId: get-addresses-address_id
+      description: Fetch an address by system ID in path.
+    patch:
+      summary: Update an address by ID
+      tags:
+        - ADDRESSES
+      responses: {}
+      operationId: patch-addresses-address_id
+    delete:
+      summary: ''
+      operationId: delete-addresses-address_id
+      responses:
+        '200':
+          description: OK
+      description: Remove an address by address ID
+  /addresses:
+    post:
+      summary: Create an Address
+      tags:
+        - ADDRESSES
+      responses: {}
+      operationId: post-addresses
+    get:
+      summary: List Addresses
+      tags:
+        - ADDRESSES
+      responses: {}
+      operationId: get-addresses
+      description: List addresses.  Filter results by query paramters
 components:
   schemas: {}
   securitySchemes:
@@ -28,11 +72,38 @@ components:
       name: vyalynk-client-id
       type: apiKey
       in: header
-      description: Merchant API Key  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
+      description: Merchant API Key.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
     vyalynk-app-id:
       name: vyalynk-app-id
       type: apiKey
       in: header
       description: Developer API Key.  Use `APP-T6554252567241061980` for testing.
+  parameters:
+    vyalynk-app-id:
+      name: vyalynk-app-id
+      in: header
+      schema:
+        type: string
+      description: Developer Application API Key
+    vyalynk-client-id:
+      name: vyalynk-client-id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Merchant API Key
+    address-id:
+      name: address_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: address-87sju148sjsuy7g
+        pattern: ^address-
+        maxLength: 30
+      description: System identifier for address.  Starts with `address-`
 security:
   - jwt: []
+  - vyalynk-app-id: []
+    vyalynk-client-id: []
+  - vyalynk-client-id: []
