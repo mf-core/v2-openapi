@@ -3,12 +3,14 @@ info:
   title: VyaPay OpenAPI 3.1
   version: '1.0'
   summary: VyaPay API
-  description: |-
-    VyaPay API
+  description: VyaPay API
   contact:
     name: Technical Support
-    url: https://vyapay.com
+    url: 'https://vyapay.com'
     email: support@vyapay.com
+  license:
+    name: MIT
+    identifier: MIT
 servers:
   - url: 'http://test-api.vyapay.com'
     description: Test (API Gateway)
@@ -22,17 +24,15 @@ components:
       type: http
       scheme: bearer
       description: JWT token received from User Login
-    clientKey:
+    vyalynk-client-id:
       name: vyalynk-client-id
       type: apiKey
       in: header
-      description: API Gateway Merchant Authorization.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
-    applicationKey:
+      description: Merchant API Key  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
+    vyalynk-app-id:
       name: vyalynk-app-id
       type: apiKey
       in: header
-      description: API Gateway Application Authorization.  Use `APP-T6554252567241061980` for testing.
+      description: Developer API Key.  Use `APP-T6554252567241061980` for testing.
 security:
   - jwt: []
-  - applicationKey: []
-    clientKey: []
