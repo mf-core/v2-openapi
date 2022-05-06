@@ -16,6 +16,8 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
+  - url: 'http://localhost:3030'
+    description: localhost
 tags:
   - name: COMMON
     description: Common endpoints supporting multiple resources
@@ -23,32 +25,6 @@ tags:
       description: See documentation for more detail
       url: 'https://bing.com'
 paths:
-  '/addresses/{address_id}':
-    parameters:
-      - $ref: '#/components/parameters/address-id'
-    get:
-      summary: Fetch address
-      tags:
-        - COMMON
-      responses: {}
-      operationId: get-addresses-address_id
-      description: Fetch an address by system ID in path.
-    patch:
-      summary: Update an address by ID
-      tags:
-        - COMMON
-      responses: {}
-      operationId: patch-addresses-address_id
-      description: Update an address value
-    delete:
-      summary: Remove an Address
-      operationId: delete-addresses-address_id
-      responses:
-        '200':
-          description: OK
-      description: Remove an address by address ID
-      tags:
-        - COMMON
   /addresses:
     post:
       summary: Create an Address
@@ -65,26 +41,47 @@ paths:
         description: An address must be associated with a _customer_ (`contact_id` and/or `company_id`) or a _submerchant_ (`mid_id`).  Requests containing both a _customer_ and a _submerchant_ will return an unprocessable error.
     get:
       summary: List Addresses
+      security:
+        - jwt: []
       tags:
         - COMMON
       responses: {}
       operationId: get-addresses
-      description: List addresses.  Filter results by query paramters
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Address.yaml
-            examples: {}
-          application/xml:
-            schema:
-              type: object
-              properties: {}
-          multipart/form-data:
-            schema:
-              type: object
-              properties: {}
-        description: The following parameters are provided for the address object.  The address object must be associated with a customer (`company_id` or `contact_id`) or a sub-merchant (`mid_id`).  Requests submitted with a customer identifier (`company_id` and/or `contact_id`) and a submerchant (`mid_id`) will return an error.
+      description: List addresses.  Filter results by including query parameters and values.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: street_1
+          description: Address street 1.  Partial street values accepted.
+        - $ref: '#/components/parameters/vyalynk-app-id'
+        - $ref: '#/components/parameters/vyalynk-client-id'
+  '/addresses/{address_id}':
+    parameters:
+      - $ref: '#/components/parameters/address-id'
+    get:
+      summary: Fetch address
+      tags:
+        - COMMON
+      responses: {}
+      operationId: get-addresses-address_id
+      description: Fetch an address by system ID in path.
+    patch:
+      summary: Update an address by ID
+      tags:
+        - COMMON
+      responses: {}
+      operationId: patch-addresses-address_id
+      description: Update an existing _customer_ address by providing the system address ID (starts with `address-`) in path and parameter(s with new values to update in the request body.
+    delete:
+      summary: Remove an Address
+      operationId: delete-addresses-address_id
+      responses:
+        '200':
+          description: OK
+      description: Remove an address by address ID
+      tags:
+        - COMMON
 components:
   schemas: {}
   securitySchemes:
@@ -92,16 +89,6 @@ components:
       type: http
       scheme: bearer
       description: JWT token received from User Login
-    vyalynk-client-id:
-      name: vyalynk-client-id
-      type: apiKey
-      in: header
-      description: Merchant API Key.  Use `10852b2b2f57480696e5a4e918b26cc1` for testing.
-    vyalynk-app-id:
-      name: vyalynk-app-id
-      type: apiKey
-      in: header
-      description: Developer API Key.  Use `APP-T6554252567241061980` for testing.
   parameters:
     vyalynk-app-id:
       name: vyalynk-app-id
@@ -109,15 +96,15 @@ components:
       required: false
       schema:
         type: string
-      description: Developer Application API Key
+      description: Developer Application API Key.  Required if JWT Authorization is not provided
     vyalynk-client-id:
       name: vyalynk-client-id
       in: header
       required: false
       schema:
         type: string
-      description: Merchant API Key
-    address-id:
+      description: Merchant API Key.  Required if JWT Authorization is not provided
+    address_id:
       name: address_id
       in: path
       required: true
@@ -129,5 +116,3 @@ components:
       description: System identifier for address.  Starts with `address-`
 security:
   - jwt: []
-  - vyalynk-app-id: []
-    vyalynk-client-id: []

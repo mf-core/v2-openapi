@@ -1,0 +1,30 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+  <head>
+      <title><%= DOCS_TITLE %></title>
+    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+  </head>
+  <body>
+    <rapi-doc 
+        spec-url = "./reference/vyapay.yaml"
+        persist-auth="true"
+        nav-bg-color="#272727"
+        bg-color="#fafafa"
+        text-color="#333333"
+        primary-color="#ed1f27"
+        nav-item-spacing = "compact"
+        show-header="false"
+        render-style = "read"
+        allow-advanced-search
+        schema-style="table"
+        schema-expand-level = "1"
+        schema-description-expanded = "true"
+        font-size = "largest"
+    > 
+
+    <img slot="nav-logo" src="<%= HOST_LOGO %>" style="max-width:280px; text-align:center; padding:20px"/>
+
+    </rapi-doc>
+  </body>
+</html>
