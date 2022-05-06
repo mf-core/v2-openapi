@@ -96,6 +96,7 @@ components:
       required: false
       schema:
         type: string
+        example: APP-T6554252567241061980
       description: Developer Application API Key.  Required if JWT Authorization is not provided
     vyalynk-client-id:
       name: vyalynk-client-id
@@ -103,6 +104,7 @@ components:
       required: false
       schema:
         type: string
+        example: 10852b2b2f57480696e5a4e918b26cc1
       description: Merchant API Key.  Required if JWT Authorization is not provided
     address_id:
       name: address_id
