@@ -1,8 +1,5 @@
 title: Address
 type: object
-x-tags:
-  - Address
-  - Common
 description: Address Object
 properties:
   name:
@@ -51,7 +48,22 @@ properties:
       - US
       - CA
   phone:
-    $ref: ./Phones.yaml
+    type: object
+    maxProperties: 3
+    description: Address phone number
+    properties:
+      name:
+        type: string
+        maxLength: 40
+        example: Address Phone
+        description: Name for address phone
+      number:
+        type: string
+        example: 1 (287) 373-2910
+        maxLength: 16
+        description: Address phone number.  No validations or formatting applied
 required:
   - street_1
   - postal_code
+x-tags:
+  - MODELS

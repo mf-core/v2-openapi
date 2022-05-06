@@ -16,16 +16,12 @@ servers:
     description: Test (API Gateway)
   - url: 'http://api.vyapay.com'
     description: Production (API Gateway)
-tags: [
-  {
-    name: COMMON,
-    description: 'Common endpoints supporting multiple resources',
-    externalDocs: {
-      description: 'See documentation for more detail',
+tags:
+  - name: COMMON
+    description: Common endpoints supporting multiple resources
+    externalDocs:
+      description: See documentation for more detail
       url: 'https://bing.com'
-    }
-  }
-]
 paths:
   '/addresses/{address_id}':
     parameters:
@@ -34,9 +30,7 @@ paths:
       summary: Fetch address
       tags:
         - COMMON
-      responses: {
-
-      }
+      responses: {}
       operationId: get-addresses-address_id
       description: Fetch an address by system ID in path.
     patch:
@@ -45,22 +39,30 @@ paths:
         - COMMON
       responses: {}
       operationId: patch-addresses-address_id
-      description: 'Update an address value'
+      description: Update an address value
     delete:
-      summary: ''
+      summary: Remove an Address
       operationId: delete-addresses-address_id
       responses:
         '200':
           description: OK
       description: Remove an address by address ID
+      tags:
+        - COMMON
   /addresses:
     post:
       summary: Create an Address
-      description: 'Create a new address.  Must associate address with a customer (company or contact)'
+      description: Create a new address associated with a _customer_ OR a _submerchant_
       tags:
         - COMMON
       responses: {}
       operationId: post-addresses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Address.yaml
+        description: An address must be associated with a _customer_ (`contact_id` and/or `company_id`) or a _submerchant_ (`mid_id`).  Requests containing both a _customer_ and a _submerchant_ will return an unprocessable error.
     get:
       summary: List Addresses
       tags:
@@ -68,6 +70,21 @@ paths:
       responses: {}
       operationId: get-addresses
       description: List addresses.  Filter results by query paramters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Address.yaml
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: The following parameters are provided for the address object.  The address object must be associated with a customer (`company_id` or `contact_id`) or a sub-merchant (`mid_id`).  Requests submitted with a customer identifier (`company_id` and/or `contact_id`) and a submerchant (`mid_id`) will return an error.
 components:
   schemas: {}
   securitySchemes:
