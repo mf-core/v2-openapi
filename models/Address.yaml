@@ -1,6 +1,8 @@
 title: Address
 type: object
 description: Address Object
+x-tags:
+  - MODELS
 properties:
   name:
     type: string
@@ -47,6 +49,24 @@ properties:
     enum:
       - US
       - CA
+  contact_id:
+    type: string
+    description: The system record identifier for a contact.  Starts with `contact-`.
+    pattern: ^contact-
+    maxLength: 40
+    example: contact-j8736gtstw534722
+  company_id:
+    type: string
+    description: The system record identifier for a company.  Starts with `company-`
+    pattern: ^company-
+    maxLength: 40
+    example: company-47loi0293jdk939v
+  mid_id:
+    type: string
+    description: The system record identifier for a submerchant.  Starts with `mid-`.  Submerchant must be associated with the merchant key (`vyalynk-client-id`).  If `contact_id` or `company_id` is provided with a `mid_id` the system will return an error.
+    pattern: ^mid-
+    maxLength: 40
+    example: mid-uhy72625hy2029
   phone:
     type: object
     maxProperties: 3
@@ -65,5 +85,19 @@ properties:
 required:
   - street_1
   - postal_code
-x-tags:
-  - MODELS
+examples:
+  - name: North Shore office
+    contact: Mary Klapp
+    street_1: 27 Enterprise Way
+    street_2: Suite 40
+    street_3: Bldg 7
+    city: Key Biscayne
+    state_code: FL
+    postal_code: '33149'
+    country_code: US
+    contact_id: contact-j8736gtstw534722
+    company_id: company-47loi0293jdk939v
+    mid_id: mid-uhy72625hy2029
+    phone:
+      name: Address Phone
+      number: 1 (287) 373-2910

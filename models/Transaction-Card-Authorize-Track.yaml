@@ -26,7 +26,7 @@ properties:
     properties:
       mid:
         type: string
-        minLength: 1
+
         example: '90655454'
         description: Host submerchant identifier accepting the payment.
       amount:

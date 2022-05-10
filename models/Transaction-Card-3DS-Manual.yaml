@@ -22,9 +22,9 @@ x-examples:
       XID: 
       CAVV:
       ECIFlag: 1
-      purchase_order: null
-      invoiceid: null
-      orderid: null
+      purchase_order: 
+      invoiceid: 
+      orderid: 
       ipaddress: 0.0.0.0
       cfirstname: Jonathan
       clastname: Hawkes

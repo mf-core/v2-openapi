@@ -2,7 +2,7 @@ title: Phone
 type: object
 description: Phone number object
 x-tags:
-  - BASE
+  - MODELS
 properties:
   name:
     type: string

@@ -8,15 +8,15 @@ x-examples:
     transaction_data:
       mid: 90655454
       amount: 45.88
-      creditcard: null
-      cvv: null
+      creditcard: 
+      cvv: 
       response_3DS: success
       XID: 
       CAVV:
       ECIFlag: 1
-      purchase_order: null
-      invoiceid: null
-      orderid: null
+      purchase_order: 
+      invoiceid: 
+      orderid: 
       ipaddress: 0.0.0.0
       cemail: john.hawkes@example.com
       send_rcpt: 'true'

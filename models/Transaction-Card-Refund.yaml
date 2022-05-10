@@ -1,12 +1,14 @@
-title: Transactions-Refund
+title: Transaction-Card-Refund
 type: object
-description: Transaction card refund model
+description: Transaction credit card refund model
 properties:
   amount:
     type:
       - string
       - number
-    description: Amount to refund.  Must be equal to or less than the original transaciton amount.  Use a numeric string or number value.
+    description: >-
+      Amount to refund.  Must be equal to or less than the original transaciton amount.  
+      Use a numeric string or number value.
     example: 24.22
     maxLength: 9
     maximum: 999999.99

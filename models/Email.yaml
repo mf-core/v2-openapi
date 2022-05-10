@@ -1,8 +1,7 @@
 title: Email
 type: object
 x-tags:
-  - Email
-  - Common
+  - MODELS
 description: Email object
 properties:
   name:

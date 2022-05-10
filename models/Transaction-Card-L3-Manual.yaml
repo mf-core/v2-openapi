@@ -2,7 +2,7 @@ description: |-
   Process Level 3 with credit card number model
   ___
 type: object
-title: Card Number
+title: L3 Card Number
 x-examples:
   example-1:
     transaction_data:

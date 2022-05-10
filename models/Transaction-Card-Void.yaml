@@ -1,10 +1,10 @@
 title: Transactions-Card-Void
 type: object
-description: Transaction card void model
+description: Transaction credit card void model
 properties:
   transaction_id:
     type: string
-    description: The original `transaction_id` to refund
+    description: The original `transaction_id` to void
     maxLength: 40
 required:
   - transaction_id
