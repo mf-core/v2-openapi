@@ -70,8 +70,8 @@ properties:
     $ref: ./Tags.yaml
   notes:
     $ref: ./Notes.yaml
-  custom_fields:
-    $ref: ./Custom-Fields.yaml
+  meta_data:
+    $ref: ./Meta-Data.yaml
 required:
   - name
   - description

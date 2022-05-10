@@ -5,6 +5,9 @@ items:
   type: object
   description: Custom Field Object
   properties:
+    label:
+      type: string
+      description: The custom field label
     name:
       type: string
       description: Custom field name
@@ -15,20 +18,19 @@ items:
       enum:
         - number
         - integer
-        - date
         - boolean
         - text
         - currency
-        - link
-      example: date
+        - password
+        - url
+        - datetime
+      example: datetime
+      default: text
     max_length:
       type: string
       description: Set a maximum length for the customer field.  Max is 1000.
       maxLength: 1000
       example: '20'
-    label:
-      type: string
-      description: The custom field label
     default:
       type: string
       description: Set custom field default value.
@@ -36,6 +38,5 @@ items:
       type: string
       description: Provide regex validation for expected field data format or pattern
   required:
-    - name
-    - type
     - label
+    - name
