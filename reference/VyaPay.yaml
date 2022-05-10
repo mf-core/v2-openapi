@@ -197,6 +197,54 @@ paths:
           schema:
             type: integer
             example: 20
+    post:
+      summary: Create Transaction
+      operationId: post-card-sale-transactions
+      tags:
+        - VYALYNK
+        - TRANSACTIONS
+      responses:
+        '200':
+          description: OK
+      description: Send Transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: ../models/Transaction-Card-Manual.yaml
+                - $ref: ../models/Transaction-Card-Token.yaml
+            examples:
+              example-1:
+                value:
+                  transaction_data:
+                    mid: '90655454'
+                    amount: 24.88
+                    creditcard: '5146312620000045'
+                    cvv: 999
+                    month: '04'
+                    year: 27
+                    cardfullname: Johnathan Hawkes
+                    bzip: 32615
+                    baddress: 2831 NW 41st St
+                    baddress2: STE J
+                    bcity: Alachua
+                    bstate: AK
+                    invoiceid: string
+                    orderid: string
+                    ipaddress: 0.0.0.0
+                    cfirstname: Johnathan
+                    clastname: Hawkes
+                    cemail: john.hawkes@example.com
+                    cphone: 287-432-2929
+                    cwebaddress: 'https://example.website.com'
+                    store_card: 0
+                    send_rcpt: 'true'
+          application/xml:
+            schema:
+              $ref: ../models/Transaction-Card-Sale.yaml
+        description: ''
+      x-internal: false
 tags:
   - name: TRANSACTIONS
   - name: VYALYNK
