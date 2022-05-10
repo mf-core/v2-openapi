@@ -3,7 +3,7 @@ info:
   title: VyaPay OpenAPI 3.1
   version: '1.0'
   summary: VyaPay API
-  description: '[object Object]'
+  description: his is a good API
   contact:
     name: Technical Support
     url: 'https://vyapay.com'
@@ -12,15 +12,14 @@ info:
     name: MIT
     identifier: MIT
 servers:
-  - url: 'http://test-api.vyapay.com'
+  - url: 'http://test-api.vyapay.com/v2'
     description: Test (API Gateway)
-  - url: 'http://api.vyapay.com'
+  - url: 'http://api.vyapay.com/v2'
     description: Production (API Gateway)
   - url: 'http://localhost:3030'
     description: localhost
-
 paths:
-  /vyalynk/transactions:
+  /card/sale/transactions:
     get:
       summary: List Transactions
       description: List Transactions
@@ -38,6 +37,7 @@ paths:
             type:
               - string
             example: '827263293809'
+          description: Search by host gateway `transaction_id`.  Search for multiple `transaction_id`s by separating values with commas
         - name: start_date
           in: query
           description: Search for transactions processed on or after a particular date. Format date as a `mm/dd/yy`
@@ -197,7 +197,6 @@ paths:
           schema:
             type: integer
             example: 20
-  
 tags:
   - name: TRANSACTIONS
   - name: VYALYNK
