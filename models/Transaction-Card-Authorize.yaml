@@ -1,0 +1,6 @@
+title: Credit Card Sale
+oneOf:
+  - $ref: ./Transaction-Card-Authorize-Manual.yaml
+  - $ref: ./Transaction-Card-Authorize-Token.yaml
+  - $ref: ./Transaction-Card-Authorize-Track.yaml
+  

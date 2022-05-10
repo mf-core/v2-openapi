@@ -1,0 +1,38 @@
+title: Transaction-Capture
+type: object
+properties:
+  mid:
+    type: string
+    minLength: 1
+    example: '90655454'
+    description: Host submerchant identifier accepting the captured payment.
+  amount:
+    type:
+      - string
+      - number
+    minLength: 2
+    description: The amount to capture.  Must be a numeric string or number value.
+    example: 24.88
+    maxLength: 9
+    maximum: 999999.99
+  transaction_id:
+    type: string
+    description: The pre-authorization `order_id` of the original authorization
+    maxLength: 40
+  orderid:
+    type: string
+    minLength: 1
+    description: The pre-authorization `order_id` of the original authorization
+    maxLength: 60
+  send_rcpt:
+    type: string
+    example: 'false'
+    minLength: 4
+    maxLength: 5
+    description: Enter `false` to disable sending an email receipt to the customer.  Default is `true`
+required:
+  - mid
+  - amount
+  - transaction_id
+  - orderid
+description: Transaction Capture Model

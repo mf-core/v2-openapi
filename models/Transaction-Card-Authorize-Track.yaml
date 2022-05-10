@@ -1,0 +1,91 @@
+description: |-
+  Use this endpoint to process swiped credit card pre-authorization sale with track data
+  ___
+type: object
+x-examples:
+  example-1:
+    transaction_data:
+      mid: "90655454"
+      amount: "12.89"
+      trackdata: ""
+      ksnTrack: ""
+      invoiceid: ""
+      orderid: ""
+      ipaddress: "0.0.0.0"
+      cfirstname: Jonathan
+      clastname: Hawkes
+      cemail: john.hawkes@example.com
+      cphone: 1-344-877-8928
+      cwebaddress: https://this.example.com
+      store_card: 0
+title: Track Data
+properties:
+  transaction_data:
+    type: object
+    description: Transaction request object
+    properties:
+      mid:
+        type: string
+        minLength: 1
+        example: '90655454'
+        description: Host submerchant identifier accepting the payment.
+      amount:
+        type:
+          - string
+          - number
+        minLength: 2
+        description: The amount to process.  Must be a numeric string or number value.
+        example: 24.88
+        maxLength: 9
+        maximum: 999999.99
+      trackdata:
+        type: string
+        description: Provide the full string returned from the card reader after swipe
+      ksnTrack:
+        type: string
+        description: 'If `trackdata` is encrypted, provide the Key Serial Number (ksn).  Leave `""` or do not provide this parameter in request for unencrypted `trackdata`'
+      invoiceid:
+        type: string
+        description: Invoice number associated with transaction
+        maxLength: 40
+      orderid:
+        type: string
+        description: 'Order ID assigned to the sale.  Must be unique for merchant account.  If not provided the system will generate and return a random unique `orderid` '
+        maxLength: 60
+      ipaddress:
+        type: string
+        example: 0.0.0.0
+        description: IP Address of machine submitting transactions.  Although not required is recommended to enhance fraud prevention.
+      cfirstname:
+        type: string
+        description: Customer first name.  Required if using the `store_card` option.
+        maxLength: 40
+        example: Johnathan
+      clastname:
+        type: string
+        example: Hawkes
+        maxLength: 40
+        description: Customer last name.  Required if using the `store_card` option
+      cemail:
+        type: string
+        description: Customer email address.  Required if using the `store_card` option.
+        maxLength: 60
+        format: email
+        example: john.hawkes@example.com
+      cphone:
+        type: string
+        description: Customer phone number.  Accepted as-is without formatting.
+        maxLength: 20
+        example: 287-432-2929
+      cwebaddress:
+        type: string
+        description: Customer website address.
+        format: uri
+        example: 'https://example.website.com'
+        maxLength: 120
+      store_card:
+        type:
+          - integer
+          - string
+        description: 'Enter ""1"" as a string or integer to encrypt and store credit card in secure vault and return a token.  If customer email / credit card information already exists the system will return the credut card token adn message indicating token already exists.  '
+

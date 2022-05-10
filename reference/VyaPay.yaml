@@ -3,7 +3,7 @@ info:
   title: VyaPay OpenAPI 3.1
   version: '1.0'
   summary: VyaPay API
-  description: VyaPay API
+  description: '[object Object]'
   contact:
     name: Technical Support
     url: 'https://vyapay.com'
@@ -18,103 +18,186 @@ servers:
     description: Production (API Gateway)
   - url: 'http://localhost:3030'
     description: localhost
-tags:
-  - name: COMMON
-    description: Common endpoints supporting multiple resources
-    externalDocs:
-      description: See documentation for more detail
-      url: 'https://bing.com'
+
 paths:
-  /addresses:
-    post:
-      summary: Create an Address
-      description: Create a new address associated with a _customer_ OR a _submerchant_
-      tags:
-        - COMMON
-      responses: {}
-      operationId: post-addresses
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Address.yaml
-        description: An address must be associated with a _customer_ (`contact_id` and/or `company_id`) or a _submerchant_ (`mid_id`).  Requests containing both a _customer_ and a _submerchant_ will return an unprocessable error.
+  /vyalynk/transactions:
     get:
-      summary: List Addresses
-      security:
-        - jwt: []
+      summary: List Transactions
+      description: List Transactions
       tags:
-        - COMMON
-      responses: {}
-      operationId: get-addresses
-      description: List addresses.  Filter results by including query parameters and values.
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: street_1
-          description: Address street 1.  Partial street values accepted.
-        - $ref: '#/components/parameters/vyalynk-app-id'
-        - $ref: '#/components/parameters/vyalynk-client-id'
-  '/addresses/{address_id}':
-    parameters:
-      - $ref: '#/components/parameters/address-id'
-    get:
-      summary: Fetch address
-      tags:
-        - COMMON
-      responses: {}
-      operationId: get-addresses-address_id
-      description: Fetch an address by system ID in path.
-    patch:
-      summary: Update an address by ID
-      tags:
-        - COMMON
-      responses: {}
-      operationId: patch-addresses-address_id
-      description: Update an existing _customer_ address by providing the system address ID (starts with `address-`) in path and parameter(s with new values to update in the request body.
-    delete:
-      summary: Remove an Address
-      operationId: delete-addresses-address_id
+        - VYALYNK
+        - TRANSACTIONS
       responses:
         '200':
           description: OK
-      description: Remove an address by address ID
-      tags:
-        - COMMON
-components:
-  schemas: {}
-  securitySchemes:
-    jwt:
-      type: http
-      scheme: bearer
-      description: JWT token received from User Login
-  parameters:
-    vyalynk-app-id:
-      name: vyalynk-app-id
-      in: header
-      required: false
-      schema:
-        type: string
-        example: APP-T6554252567241061980
-      description: Developer Application API Key.  Required if JWT Authorization is not provided
-    vyalynk-client-id:
-      name: vyalynk-client-id
-      in: header
-      required: false
-      schema:
-        type: string
-        example: 10852b2b2f57480696e5a4e918b26cc1
-      description: Merchant API Key.  Required if JWT Authorization is not provided
-    address_id:
-      name: address_id
-      in: path
-      required: true
-      schema:
-        type: string
-        example: address-87sju148sjsuy7g
-        pattern: ^address-
-        maxLength: 30
-      description: System identifier for address.  Starts with `address-`
-security:
-  - jwt: []
+      operationId: get-vyalynk-transactions
+      parameters:
+        - name: transaction_id
+          in: query
+          schema:
+            type:
+              - string
+            example: '827263293809'
+        - name: start_date
+          in: query
+          description: Search for transactions processed on or after a particular date. Format date as a `mm/dd/yy`
+          schema:
+            type: string
+            example: 01/01/22
+            maxLength: 8
+            minLength: 8
+        - name: end_date
+          in: query
+          description: Search for transactions processed on or before a particular date. Format date as a `mm/dd/yy`
+          schema:
+            type: string
+            example: 07/01/22
+            maxLength: 8
+            minLength: 8
+        - name: payment_type
+          in: query
+          description: |-
+            A case-sensitive string to return transactions by specific payment type type.
+            * `cc` = Credit Card transactions
+            * `ach` = ACH Transactions
+
+            You can return both cc and ach transactions by separating the values with a comma.
+
+            Example: "cc, ach"
+
+            default: cc
+          schema:
+            type: string
+            enum:
+              - cc
+              - ach
+            example: cc
+            maxLength: 3
+            minLength: 2
+            default: cc
+        - name: amount
+          in: query
+          description: Search for a specific transaction amount.  Use a whole number string or number
+          schema:
+            type:
+              - string
+              - number
+            example: 14.42
+        - name: amount_from
+          in: query
+          description: |-
+            Search for transactions equal to or greater than value provided.
+
+            If value provided, the `amount` value will be ignored (if provided)
+          schema:
+            type:
+              - string
+              - number
+            example: 12
+        - name: amount_to
+          in: query
+          description: |-
+            Search for transactions equal to or less than value provided.
+
+            If value provided, the `amount` value will be ignored (if provided)
+          schema:
+            type:
+              - string
+              - number
+            example: 123.22
+        - name: cardholder_name
+          in: query
+          description: |-
+            Search for transactions by cardholder name.
+
+            "Fuzzy search" begins with is available.
+
+            For example, `jen` will return transactions for both `JEN`NY SIMMS and SAMMY `JEN`KINS
+          schema:
+            type: string
+            example: robert
+        - name: card_brand
+          in: query
+          description: |-
+            Case sensitive string search for transactions by card brand. Valid values are:
+
+            * visa
+            * mastercard
+            * amex
+            * discover
+            * jcb
+            * diners
+
+            Return multiple card brands by separating the card brand names with a comma.
+
+            Example: "visa, amex"
+
+            By default the card_brand is ignored.
+          schema:
+            type: string
+            enum:
+              - visa
+              - mastercard
+              - amex
+              - discover
+              - jcb
+              - diners
+            example: visa
+            minLength: 3
+            maxLength: 10
+        - name: order_id
+          in: query
+          description: |-
+            Case sensitive string search for transactions by order_id. 
+
+            Return multiple transactions by separating the order_id with a comma.
+
+            Example: "abc-1277645, abc-1387665"
+
+            By default the order_id is ignored.
+          schema:
+            type: string
+            example: oid_234872923
+            maxLength: 40
+        - name: first_6
+          in: query
+          description: |-
+            Search for transactions matching the first 6 digits of the credit card account number. 
+
+            Return multiple transactions by separating the `first_6` values with a comma.
+
+            Example: "545454, 454847"
+          schema:
+            type: string
+            example: '454847'
+            minLength: 6
+            maxLength: 6
+        - name: last_4
+          in: query
+          description: |-
+            Search for transactions matching the last 4 digits of the credit card account number. 
+
+            Return multiple transactions by separating the `last_4` values with a comma.
+
+            Example: "5454, 4566"
+          schema:
+            type: string
+            example: '4366'
+            minLength: 4
+            maxLength: 4
+        - name: limit
+          in: query
+          description: 'The number of results to return when viewing a page. See [PAGINATION](#tag/Pagination) for more details.'
+          schema:
+            type: integer
+            example: 40
+        - name: offset
+          in: query
+          description: 'The number of results to skip. See [PAGINATION](#tag/Pagination) for more details.'
+          schema:
+            type: integer
+            example: 20
+  
+tags:
+  - name: TRANSACTIONS
+  - name: VYALYNK

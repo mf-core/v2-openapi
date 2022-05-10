@@ -1,0 +1,61 @@
+description: |-
+  Use this endpoint to process a sale pre-authrization with a card token.
+  ___
+type: object
+x-examples:
+  example-1:
+    transaction_data:
+      mid: '90655454'
+      amount: '12.55'
+      creditcard: ""
+      cvv: ""
+      invoiceid: ""
+      orderid: ""
+      ipaddress: 0.0.0.0
+title: Card Token
+properties:
+  transaction_data:
+    type: object
+    description: Transaction request object
+    properties:
+      mid:
+        type: string
+        example: '90655454'
+        description: Host submerchant identifier accepting the payment.
+      amount:
+        type:
+          - string
+          - number
+        minLength: 2
+        description: The amount to process.  Must be a numeric string or number value.
+        example: 24.88
+        maxLength: 9
+        maximum: 999999.99
+      creditcard:
+        type: string
+        minLength: 14
+        example: 5146312620000045
+        maxLength: 16
+        description: Credit card token
+      cvv:
+        type:
+          - string
+          - integer
+        description: Enter the card token 3 or 4 digit (for AMEX only) card verification code as a whole number string or integer.
+        minLength: 3
+        maxLength: 4
+        minimum: 111
+        maximum: 9999
+        example: 999
+      invoiceid:
+        type: string
+        description: Invoice number associated with transaction
+        maxLength: 40
+      orderid:
+        type: string
+        description: 'Order ID assigned to the sale.  Must be unique for merchant account.  If not provided the system will generate and return a random unique `orderid` '
+        maxLength: 60
+      ipaddress:
+        type: string
+        example: 0.0.0.0
+        description: IP Address of machine submitting transaction.  Although not required is recommended to enhance fraud prevention.

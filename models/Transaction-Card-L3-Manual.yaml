@@ -1,0 +1,276 @@
+description: |-
+  Process Level 3 with credit card number model
+  ___
+type: object
+title: Card Number
+x-examples:
+  example-1:
+    transaction_data:
+      mid: 90655454
+      amount: 45.88
+      total_tax: 5.88
+      creditcard: 5146312620000045
+      cvv: 999
+      month: "04"
+      year: 27
+      cardfullname: Jonathan Hawkes
+      bzip: 32615
+      baddress: 2831 NW 41st St
+      baddress2: STE J
+      bcity: Alachua
+      bstate: FL
+      items:
+        - name: Blue Widget
+          description: Pretty blue widget
+          unit_price: 10
+          unit_of_measurement: each
+          units_sold: 4
+          total_amount: 45.88
+          upc:
+          ucc:
+      shipping_zip: "33149"
+      shipping_country: "US"
+      purchase_order: 
+      invoiceid: 
+      orderid: 
+      ipaddress: "0.0.0.0"
+      cfirstname: "Jonathan"
+      clastname: "Hawkes"
+      cemail: "john.hawkes@example.com"
+      cphone: "287-432-2929"
+      cwebaddress: "https://example.website.com"
+      store_card: 0
+      send_rcpt: "true"
+
+
+properties:
+  transaction_data:
+    type: object
+    description: Transaction request object
+    properties:
+      mid:
+        type: string
+        example: '90655454'
+        description: Host submerchant identifier accepting the payment.
+      amount:
+        type:
+          - string
+          - number
+        description: The amount to process.  Must be a numeric string or number value.
+        example: 24.88
+        maxLength: 9
+        maximum: 999999.99
+      total_tax:
+        type:
+          - string
+          - number
+        description: The total sale tax amount.  Must be a numeric string or number value.
+        example: 4.92
+        maxLength: 9
+        maximum: 999999.99
+      creditcard:
+        type:
+          - string
+          - integer
+        minLength: 14
+        description: 'Credit Card number.  Must be a whole number string or integer.  See [Test Cards](#section/TEST-CARDS) for available cards to use for test transactions'
+        example: 5146312620000045
+        maxLength: 16
+      cvv:
+        type:
+          - string
+          - integer
+        description: Enter the `creditcard` 3 or 4 digit (for AMEX only) card verification code as a whole number string or integer.
+        minLength: 3
+        maxLength: 4
+        minimum: 111
+        maximum: 9999
+        example: 999
+      month:
+        type:
+          - string
+          - integer
+        description: Enter the `creditcard` expiration month.  Must be a valid 2-digit month sent as a whole number string or integer.
+        example: '04'
+        minLength: 2
+        maxLength: 2
+      year:
+        type:
+          - string
+          - integer
+        description: Enter the `creditcard` expiration year.  Must be a valid 2 or 4-digit year sent as a whole number string or integer.
+        example: 27
+        minLength: 2
+        maxLength: 4
+        minimum: 22
+        maximum: 2044
+      cardfullname:
+        type: string
+        description: The `creditcard` cardholder name embossed on front of card.
+        example: Johnathan Hawkes
+        maxLength: 40
+      bzip:
+        type:
+          - string
+          - integer
+        minLength: 5
+        description: The `creditcard` billing zip code (US only).  Must be a 5-digit whole number string or integer.  Use example zip code for successful AVS.
+        example: 32615
+        maxLength: 5
+        maximum: 99999
+      baddress:
+        type: string
+        description: The `creditcard` billing street 1 address.  Use example street address for successful AVS
+        example: 2831 NW 41st St
+        maxLength: 60
+      baddress2:
+        type: string
+        description: The `creditcard` billing street 2 address.  Use the example street 2 address for successful AVS
+        example: STE J
+        maxLength: 20
+      bcity:
+        type: string
+        description: The `creditcard` billing city.
+        maxLength: 40
+        example: Alachua
+      bstate:
+        type: string
+        description: 'The `creditcard` [ISO-3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US) 2 character US state code'
+        enum:
+          - AK
+          - AL
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - IA
+          - ID
+          - IL
+          - IN
+          - KS
+          - KY
+          - LA
+          - MA
+          - MD
+          - ME
+          - MI
+          - MN
+          - MO
+          - MS
+          - MT
+          - NC
+          - ND
+          - NE
+          - NH
+          - NJ
+          - NM
+          - NV
+          - NY
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VA
+          - VT
+          - WA
+          - WI
+          - WV
+          - WY
+          - AS
+          - GU
+          - MP
+          - PR
+          - UM
+          - VI
+        minLength: 2
+        maxLength: 2
+      items:
+        $ref: ./Transaction-Card-L3-Items.yaml
+      shipping_zip:
+        type: string
+        description: The shipping zip code if sale items were shipped or delivered.
+        maxLength: 8
+        minLength: 4
+        example: '33149'
+      shipping_country:
+        type: string
+        description: 'The [ISO 3166-2 alpha country code](https://en.wikipedia.org/wiki/ISO_3166-2) if items were shipped or delivered'
+        maxLength: 2
+        minLength: 2
+        example: US
+      purchase_order:
+        type: string
+        description: Purchase order associated with transaction
+        maxLength: 40
+      invoiceid:
+        type: string
+        description: Invoice number associated with transaction
+        maxLength: 40
+      orderid:
+        type: string
+        description: 'Order ID assigned to the sale.  Must be unique for merchant account.  If not provided the system will generate and return a random unique `orderid` '
+        maxLength: 60
+      ipaddress:
+        type: string
+        example: 0.0.0.0
+        description: IP Address of machine submitting transactions.  Although not required is recommended to enhance fraud prevention.
+      cfirstname:
+        type: string
+        description: Customer first name.  Required if using the `store_card` option.
+        maxLength: 40
+        example: Johnathan
+      clastname:
+        type: string
+        example: Hawkes
+        maxLength: 40
+        description: Customer last name.  Required if using the `store_card` option
+      cemail:
+        type: string
+        description: Customer email address.  Required if using the `store_card` option.
+        maxLength: 60
+        format: email
+        example: john.hawkes@example.com
+      cphone:
+        type: string
+        description: Customer phone number.  Accepted as-is without formatting.
+        maxLength: 20
+        example: 287-432-2929
+      cwebaddress:
+        type: string
+        description: Customer website address.
+        format: uri
+        example: 'https://example.website.com'
+      store_card:
+        type:
+          - integer
+          - string
+        description: 'Enter ''1'' as a string or integer to encrypt and store credit card in secure vault and return a token.  If customer email / credit card information already exists the system will return the credut card token adn message indicating token already exists.  '
+      send_rcpt:
+        type: string
+        example: 'true'
+        minLength: 4
+        maxLength: 5
+        description: Enter `false` to disable sending an email receipt to the customer.  Default is `true`
+    required:
+      - mid
+      - amount
+      - total_tax
+      - creditcard
+      - cvv
+      - month
+      - year
+      - cardfullname
+      - bzip
+      - items

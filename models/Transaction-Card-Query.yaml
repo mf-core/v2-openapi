@@ -1,0 +1,6 @@
+title: Transaction-Card-Query
+description: Query model for transaction queries
+allOf:
+  - anyOf:
+      - type: object
+      - type: object

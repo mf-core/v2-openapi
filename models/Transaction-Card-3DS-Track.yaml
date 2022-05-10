@@ -1,0 +1,148 @@
+description: |-
+  Process 3DS sale with card track data model
+  ___
+type: object
+title: 3DS Track Data
+x-examples:
+  example-1:
+    transaction_data:
+      mid: '90655454'
+      amount: '45.88'
+      trackdata:
+      ksnTrack:
+      purchase_order:
+      invoiceid:
+      orderid:
+      response_3DS: success
+      XID: 
+      CAVV:
+      ECIFlag: 1
+      ipaddress: 0.0.0.0
+      cfirstname: Jonathan
+      clastname: Hawkes
+      cemail: john.hawkes@example.com
+      cphone: 1-344-877-8928
+      cwebaddress: https://this.example.com
+      send_rcpt: 'false'
+properties:
+  transaction_data:
+    type: object
+    description: Transaction request object
+    properties:
+      mid:
+        type: string
+        example: '90655454'
+        description: Host submerchant identifier accepting the payment.
+      amount:
+        type:
+          - string
+          - number
+        minLength: 2
+        description: The amount to process.  Must be a numeric string or number value.
+        example: 24.88
+        maxLength: 8
+        minimum: '.10'
+        maximum: 99999.99
+      trackdata:
+        type: string
+        minLength: 14
+        example: 5146312620000045
+        maxLength: 16
+        description: Provide the full string returned from the card reader after swipe
+      ksnTrack:
+        type: string
+        description: 'If `trackdata` is encrypted, provide the Key Serial Number (ksn).  Leave `null` or do not provide this parameter in request for unencrypted `trackdata`'
+        minLength: 3
+        maxLength: 4
+        example: 999
+      response_3DS:
+        type: string
+        description: 'Status response from 3-D Secure provider. Possible values are typically `success`, `failure`, `noaction` or `error` but can vary depending on provider'
+        maxLength: 40
+      XID:
+        type: string
+        description: 3-D Secure Transaction Identifier
+        maxLength: 40
+      CAVV:
+        type: string
+        description: The 3-D Secure Cardholder Authentication Verification Value (MasterCard’s UCAF value)
+        maxLength: 40
+      ECIFlag:
+        type: string
+        description: "ECIFlag\tElectronic Commerce Indicator\n* `0` = Payment has been flagged as SSL secured transaction\n* `1` = Payment has been flagged as SSL 3-D Secure authentication transaction (cardholder enrolled)\n* `2` = Payment has been flagged as SSL 3-D Secure authentication transaction (cardholder not enrolled or partial authenticated)"
+        maxLength: 1
+      purchase_order:
+        type: string
+        description: Purchase order associated with transaction
+        maxLength: 40
+      invoiceid:
+        type: string
+        description: Invoice number associated with transaction
+        maxLength: 40
+      orderid:
+        type: string
+        description: 'Order ID assigned to the sale.  Must be unique for merchant account.  If not provided the system will generate and return a random unique `orderid` '
+        maxLength: 60
+      ipaddress:
+        type: string
+        example: 0.0.0.0
+        description: IP Address of machine submitting transactions.  Although not required is recommended to enhance fraud prevention.
+      cfirstname:
+        type: string
+        description: Customer first name.  Required if using the `store_card` option.
+        maxLength: 40
+        example: Johnathan
+      clastname:
+        type: string
+        example: Hawkes
+        maxLength: 40
+        description: Customer last name.  Required if using the `store_card` option
+      cemail:
+        type: string
+        description: Customer email address.  Required if using the `store_card` option.
+        maxLength: 60
+        format: email
+        example: john.hawkes@example.com
+      cphone:
+        type: string
+        description: Customer phone number.  Accepted as-is without formatting.
+        maxLength: 20
+        example: 287-432-2929
+      cwebaddress:
+        type: string
+        description: Customer website address.
+        format: uri
+        example: 'https://example.website.com'
+      store_card:
+        type:
+          - integer
+          - string
+        description: 'Enter 1 as a string or integer to encrypt and store credit card in secure vault and return a token.  If customer email / credit card information already exists the system will return the credut card token adn message indicating token already exists.  '
+    required:
+      - mid
+      - amount
+      - trackdata
+      - response_3DS
+      - XID
+      - CAVV
+      - ECIFlag
+examples:
+  - transaction_data:
+      mid: '90655454'
+      amount: 24.88
+      trackdata: 5146312620000045
+      ksnTrack: 999
+      response_3DS: string
+      XID: string
+      CAVV: string
+      ECIFlag: '1'
+      purchase_order: string
+      invoiceid: string
+      orderid: string
+      ipaddress: 0.0.0.0
+      cfirstname: Johnathan
+      clastname: Hawkes
+      cemail: john.hawkes@example.com
+      cphone: 287-432-2929
+      cwebaddress: 'https://example.website.com'
+      store_card: 0

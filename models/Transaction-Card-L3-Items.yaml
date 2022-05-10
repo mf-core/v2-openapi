@@ -1,0 +1,56 @@
+title: Transaction-Card-L3-Items
+type: array
+items:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Item name
+      example: Blue Widget
+      maxLength: 40
+    description:
+      type: string
+      description: Item description
+      example: This is a pretty blue widget
+    unit_price:
+      type:
+        - string
+        - number
+      example: 14.88
+      maxLength: 9
+      maximum: 999999.99
+      description: Price per item unit.  Must be a numeric string or number
+    unit_of_measurement:
+      type: string
+      description: Item unit of measurement
+      maxLength: 20
+      example: each
+    units_sold:
+      type:
+        - string
+        - integer
+      description: Number of item units sold
+      maximum: 999999
+      maxLength: 6
+      example: 4
+    total_amount:
+      type:
+        - string
+        - number
+      maxLength: 9
+      maximum: 999999.99
+      description: The total amount of the item sale which should equal the (`item.unit_price` * `item.units_sold`) + taxes and fees minus discounts.  Must be a numeric string or number.
+    upc:
+      type: string
+      description: "The item Universal Product Code\t"
+      maxLength: 40
+    ucc:
+      type: string
+      description: "The item Universal Commercial Code\t"
+      maxLength: 40
+  required:
+    - name
+    - unit_price
+    - units_sold
+    - total_amount
+description: Transaction Level 3 Items Model

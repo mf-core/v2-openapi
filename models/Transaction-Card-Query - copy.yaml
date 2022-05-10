@@ -1,0 +1,109 @@
+title: Transaction-Card-Query
+type: object
+description: Query model for transaction queries
+properties:
+  transaction_id:
+    type: string
+    description: Filter by `transaction_id`. String and integer value allowed.  Seperate multiple `transaction_id`'s with a comma
+    example: 8766546353263
+  start_date:
+    type: string
+    example: 01/01/22
+    description: Search for transactions processed on or after a particular date. Format date as a `mm/dd/yy`
+  end_date:
+    type: string
+    example: 01/01/22
+    description: Search for transactions processed on or before a particular date. Format date as a `mm/dd/yy`
+  payment_type:
+    type: string
+    description: |-
+      A case-sensitive string to return transactions by specific payment type type.
+      * `cc` = Credit Card transactions
+      * `ach` = ACH Transactions
+
+      You can return both cc and ach transactions by separating the values with a comma.
+      Example: "cc, ach"
+    default: cc
+  amount:
+    type:
+      - string
+      - number
+    description: Search for a specific transaction amount.  Use a whole number string or number
+    example: 14.42
+  amount_from:
+    type:
+      - string
+      - number
+    description: |-
+      Search for transactions equal to or greater than value provided.
+
+      If value provided, the `amount` value will be ignored (if provided)
+    example: 12
+  amount_to:
+    type:
+      - string
+      - number
+    description: |-
+      Search for transactions equal to or less than value provided.  
+
+      If value is provided the `amount` field will be ignored.
+    example: 100
+  cardholder_name:
+    type:
+      - string
+      - number
+    description: |-
+      Search for transactions by cardholder name.
+
+      "Fuzzy search" begins with is available.
+
+      For example, `jen` will return transactions for both `JEN`NY SIMMS and SAMMY `JEN`KINS
+  card_brand:
+    type: string
+    description: |-
+      Case sensitive string search for transactions by card brand. Valid values are:
+
+      * visa
+      * mastercard
+      * amex
+      * discover
+      * jcb
+      * diners
+
+      Return multiple card brands by separating the card brand names with a comma.
+
+      Example: "visa, amex"
+
+      By default the card_brand is ignored.
+  order_id:
+    type: string
+    description: |-
+      Case sensitive string search for transactions by order_id. 
+
+      Return multiple transactions by separating the order_id with a comma.
+
+      Example: "abc-1277645, abc-1387665"
+
+      By default the order_id is ignored.
+  first_6:
+    type: string
+    description: |-
+      Search for transactions matching the first 6 digits of the credit card account. 
+
+      Return multiple transactions by separating the `first_6` values with a comma.
+
+      Example: "545454, 454847"
+  last_4:
+    type: string
+    description: |-
+      Search for transactions matching the last 4 digits of the credit card account. 
+
+      Return multiple transactions by separating the `last_4` values with a comma.
+
+      Example: "4548, 5726"
+  limit:
+    type: integer
+    description: 'The number of results to return when viewing a page. See [PAGINATION](#tag/Pagination) for more details.'
+  offset:
+    type: integer
+    description: 'The number of results to return when viewing a page. See [PAGINATION](#tag/Pagination) for more details.'
