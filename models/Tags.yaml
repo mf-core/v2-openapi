@@ -1,5 +1,5 @@
 type: array
-description: Add up to 10 tags used for list filters and searches
+description: Add up to 10 comma-separated tags
 minItems: 1
 uniqueItems: true
 x-examples:
@@ -8,8 +8,8 @@ x-examples:
     - tag2
     - tag3
 maxItems: 10
+examples:
+  - - 'tag1, tag2, tag3'
 items:
   type: string
   example: 'tag1, tag2, tag3'
-examples:
-  - - 'tag1, tag2, tag3'

@@ -1,0 +1,41 @@
+title: Custom-Fields
+type: array
+description: Array of custom field objects
+items:
+  type: object
+  description: Custom Field Object
+  properties:
+    name:
+      type: string
+      description: Custom field name
+      example: membership_date
+    type:
+      type: string
+      description: Custom field type validation.  If provided the system will validate the data type if the named custom field is passed in a request
+      enum:
+        - number
+        - integer
+        - date
+        - boolean
+        - text
+        - currency
+        - link
+      example: date
+    max_length:
+      type: string
+      description: Set a maximum length for the customer field.  Max is 1000.
+      maxLength: 1000
+      example: '20'
+    label:
+      type: string
+      description: The custom field label
+    default:
+      type: string
+      description: Set custom field default value.
+    regex:
+      type: string
+      description: Provide regex validation for expected field data format or pattern
+  required:
+    - name
+    - type
+    - label

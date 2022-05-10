@@ -3,7 +3,7 @@ info:
   title: VyaPay OpenAPI 3.1
   version: '1.0'
   summary: VyaPay API
-  description: his is a good API
+  description: This is a good API
   contact:
     name: Technical Support
     url: 'https://vyapay.com'
@@ -225,7 +225,9 @@ paths:
       tags:
         - TRANSACTIONS
         - VYALYNK
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: get-recurring
   '/card/transaction/proof_of_service/{pofs_id}':
     parameters:
@@ -234,34 +236,38 @@ paths:
           example: pofs-349872392
         name: pofs_id
         in: path
-        required: true
         description: Proof of Service id.  Starts with `pofs`
+        required: true
     get:
       summary: Fetch Proof of Service by ID
       tags:
         - TRANSACTIONS
         - VYALYNK
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: get-card-transaction-proof_of_service-id
       description: Use this endpoint to fetch a Proof of Service by `pofs_id`
       parameters: []
     delete:
       summary: Delete a Proof of Service
       operationId: delete-card-transaction-proof_of_service-pofs_id
-      responses:
-        '200':
-          description: OK
       description: Use this endpoint to Delete a Proof of Service
       tags:
         - TRANSACTIONS
         - VYALYNK
+      responses:
+        '200':
+          description: OK
   /card/transaction/proof_of_service:
     post:
       summary: Create a Proof of Service
       tags:
         - TRANSACTIONS
         - VYALYNK
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-card-transaction-proof_of_service
       requestBody:
         content:
@@ -274,7 +280,9 @@ paths:
       tags:
         - TRANSACTIONS
         - VYALYNK
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: get-card-transaction-proof_of_service
       description: Use this endpoint to query and list Proof of Service
       parameters:
@@ -338,6 +346,66 @@ paths:
                 '':
                   type: string
       description: Use this endpoint to update a Proof of Service
+  /billing/recurring/templates:
+    get:
+      summary: List Templates
+      tags:
+        - BILLING
+      responses:
+        '200':
+          description: OK
+      operationId: get-billing-recurring-templates
+      description: List merchant templates.  Filter results with query parameters
+    post:
+      summary: Create a Template
+      tags:
+        - BILLING
+      responses:
+        '200':
+          description: OK
+      operationId: post-billing-recurring-templates
+      description: Create a new template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Billing-Recurring-Template.yaml
+  '/recurring/billing/templates/{template_id}':
+    parameters:
+      - schema:
+          type: string
+        name: template_id
+        in: path
+        required: true
+        description: The recurring plan system identifier (starts with `template-`)
+    get:
+      summary: Fetch Template by system ID
+      tags:
+        - BILLING
+      responses:
+        '200':
+          description: OK
+      operationId: get-recurring-billing-templates-template_id
+      description: Fetch recurring template by system ID
+    patch:
+      summary: Patch Template
+      tags:
+        - BILLING
+      responses:
+        '200':
+          description: OK
+      operationId: patch-recurring-billing-templates-template_id
+      description: Patch recurring template
+    delete:
+      summary: Delete Template
+      tags:
+        - BILLING
+      responses:
+        '200':
+          description: OK
+      operationId: delete-recurring-billing-templates-template_id
+      description: Delete recurring template
 tags:
   - name: TRANSACTIONS
+  - name: BILLING
   - name: VYALYNK

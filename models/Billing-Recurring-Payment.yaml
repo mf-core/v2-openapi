@@ -1,0 +1,33 @@
+title: Billing-Recurring-Payment
+description: Recurring Payment Object Model
+type: object
+properties:
+  memo:
+    type: string
+    description: Provide a brief overview of the recurring plan and/or reason for  payment that will be provided for reference on all customer  emails and forms
+    example: Monthly Bronze Plan
+  enable_ach:
+    type: boolean
+    description: 'If account is setup to process ACH, set to `true` to enable ACH payments.  The default value is inherited from the [RECURRING SETTING]().'
+  enable_autopay:
+    type: boolean
+    description: |-
+      Set to `true` to enable autopayments for recurring plans created from this template.
+
+      NOTE:  If `enable_autopay` is `false` in the [RECURRING SETTINGS]() 
+      this value is ignored.
+    default: false
+  pay_in_advance:
+    type: boolean
+    description: Set value to `false` if an interval cycle payment should occur when the interval completes.  The default is `true` (payments are due when an interval cycle begins)
+    default: true
+  require_autopay:
+    type: boolean
+    description: Set to `true` to require an autopayment.  This value is ignored if `enable_autopay` is `false`
+    default: false
+  autopay_retries:
+    type: integer
+    description: '**FOR AUTOPAY ONLY** Provide the number of autopay payment retries for billing interval payments that are declined.  When the specified number of payment attempts has been reached without a successful payment, the recurring plan status will change from `LATE` to `OVERDUE` '
+    default: 3
+    minimum: 0
+    maximum: 3

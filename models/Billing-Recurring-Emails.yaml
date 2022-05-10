@@ -1,0 +1,27 @@
+title: Billing-Recurring-Emails
+type: object
+description: Recurring payment email options
+properties:
+  send_receipt:
+    type: boolean
+    description: '** FOR AUTOPAYMENTS ONLY ** The system will automatically send an email receipt for each sucessful recurring payment.  Set to `false` to disable this feature.'
+    default: false
+  send_declined:
+    type: boolean
+    default: true
+    description: '** FOR AUTOPAYMENT ONLY ** The system will automatically send a declined payment email notification for unsuccessful payment attempts.  Set to `false` to disable this feature.'
+  send_payment_reminder:
+    type: integer
+    default: 3
+    description: Set the number of days (up to 5) to send the customer an upcoming payment reminder prior to a billing payment due date.  Set to `0` to disable this feature.
+    minimum: 0
+    maximum: 5
+  send_late_notification_days:
+    type: integer
+    description: |-
+      ** FOR INVOICE PAYMENT ONLY ** Provide the number of days after a billing interval due date passes to send the customer a late payment notification and request for payment.  Enter `1` to send the email the day after the billing due date, `2` for 2 days after and so on.  The maximum number of days is `5`.  
+
+      Enter `0` to disable this feature. 
+    default: 1
+    minimum: 0
+    maximum: 5

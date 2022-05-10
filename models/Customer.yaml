@@ -1,0 +1,17 @@
+title: Customer
+type: object
+description: |+
+  Customer model.
+
+  A customer represents a [COMPANY](#tags/COMPANIES) or a 
+  [CONTACT](#tags/CONTACTS) in the system.
+
+properties:
+  customer_id:
+    type: string
+    description: >-
+      Provide a system `contact_id`, a system `company_id`, 
+      or your own **unique** customer identifier.  If parameter 
+      is omitted or no value is provided you must complete one 
+      or both of the `contact` or `customer` object(s) and the 
+      system will create a contact and/or company.

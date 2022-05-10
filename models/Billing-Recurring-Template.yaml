@@ -1,0 +1,77 @@
+title: Billing-Recurring-Template
+type: object
+description: Recurring Template Model
+properties:
+  mid_id:
+    type: string
+    description: |-
+      Provide the system submerchant identifier (starts with `mid-`) for the submerchant that will be accepting payments from all recurring plans created from this template.
+
+      If your account has a single submerchant account this value will be ignored and the submerchant account will be the default to accept all payments. 
+  name:
+    type: string
+    description: Name for template
+    example: Monthly Bronze Plan
+  description:
+    type: string
+    description: Template description
+    example: $100 monthly payment for 12 cycles
+    maxLength: 255
+  interval:
+    type: string
+    description: |-
+      Provide a billing interval.  Accepted values are:
+
+      * `DAY`
+      * `WEEK`
+      * `MONTH`
+      * `YEAR`
+      * `LDOM` (last day of month)
+    enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      - LDOM
+    example: MONTH
+  period:
+    type: integer
+    description: |-
+      An interval period represents the number of billing `interval`s 
+      that comprise a billing `cycle`.
+
+      For example, if you intend to bill a recurring plan every 2 
+      weeks (a billing `cycle`), you would provide `WEEK` as the 
+      `interval` value and `2` as the `period` value.
+
+      Likewise, if you intend to bill every month (a billing `cycle`) 
+      you would provide `MONTH` as an `interval` value and `1` 
+      as the `period` value
+
+      Use a whole number string or interval.  Decimal values are not allowed.
+    example: 1
+  cycles:
+    type: integer
+    description: 'Provide the number of billing payment cycles.  For example,  if you intend to create annual plans billed on the last day  of every month for a year (12 months), you would provide `LDOM`  as the `period` value, `1` for the `period` value and `12` as the  `cycles` value'
+    default: 1
+  renew:
+    type: boolean
+    description: Set value to `true` if the plans created from this template should automatically renew
+    default: false
+  cart_id:
+    type: string
+    description: Provide the system cart identifier (begins with `cart-`) to associate a pre-configured cart of products/services for all plans created from this template.
+    example: cart-26hyuu1229hsyeb
+  payment:
+    $ref: ./Billing-Recurring-Payment.yaml
+  emails:
+    $ref: ./Billing-Recurring-Emails.yaml
+  tags:
+    $ref: ./Tags.yaml
+  notes:
+    $ref: ./Notes.yaml
+  custom_fields:
+    $ref: ./Custom-Fields.yaml
+required:
+  - name
+  - description
