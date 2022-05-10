@@ -218,6 +218,126 @@ paths:
               $ref: ../models/Transaction-Card-Sale.yaml
         description: ''
       x-internal: false
+  /recurring:
+    get:
+      description: Use this endpoint to fetch a recurring id
+      summary: Your GET endpoint
+      tags:
+        - TRANSACTIONS
+        - VYALYNK
+      responses: {}
+      operationId: get-recurring
+  '/card/transaction/proof_of_service/{pofs_id}':
+    parameters:
+      - schema:
+          type: string
+          example: pofs-349872392
+        name: pofs_id
+        in: path
+        required: true
+        description: Proof of Service id.  Starts with `pofs`
+    get:
+      summary: Fetch Proof of Service by ID
+      tags:
+        - TRANSACTIONS
+        - VYALYNK
+      responses: {}
+      operationId: get-card-transaction-proof_of_service-id
+      description: Use this endpoint to fetch a Proof of Service by `pofs_id`
+      parameters: []
+    delete:
+      summary: Delete a Proof of Service
+      operationId: delete-card-transaction-proof_of_service-pofs_id
+      responses:
+        '200':
+          description: OK
+      description: Use this endpoint to Delete a Proof of Service
+      tags:
+        - TRANSACTIONS
+        - VYALYNK
+  /card/transaction/proof_of_service:
+    post:
+      summary: Create a Proof of Service
+      tags:
+        - TRANSACTIONS
+        - VYALYNK
+      responses: {}
+      operationId: post-card-transaction-proof_of_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Transaction-Proof-Of-Service.yaml
+      description: Use this endpoint to create a Proof of Service
+    get:
+      summary: List Proof of Service
+      tags:
+        - TRANSACTIONS
+        - VYALYNK
+      responses: {}
+      operationId: get-card-transaction-proof_of_service
+      description: Use this endpoint to query and list Proof of Service
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: pofs_id
+          description: The Proof of Service unique identifier. Begins with `pofs-`
+        - schema:
+            type: string
+          in: query
+          name: trxn_id
+          description: 'The unique transaction identifier associated with the Proof of Service. Separate multiple trxn_id as a string with commas. Example: "98773837463622, 9837343243822"'
+        - schema:
+            type: string
+            enum:
+              - '1'
+              - '2'
+              - '3'
+              - '4'
+              - '5'
+          in: query
+          name: shipper
+          description: |-
+            Query Proof of Service by shipper. Values are 
+              * `1` USPS
+              * `2` FedEx 
+              * `3` UPS 
+              * `4` DHL
+              * `5` Other
+        - schema:
+            type: string
+          in: query
+          name: tracking_no
+          description: The shipper tracking number for the Proof of Service
+        - schema:
+            type: string
+          in: query
+          name: delivery_date
+          description: The actual or expected delivery date associated with the Proof of Service. Format date as `YYYY-MM-DD`.
+    put:
+      summary: Update a Proof of Service
+      operationId: put-card-transaction-proof_of_service
+      tags:
+        - VYALYNK
+        - TRANSACTIONS
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: ../models/Transaction-Proof-Of-Service-Put.yaml
+          application/xml:
+            schema:
+              type: object
+              properties:
+                '':
+                  type: string
+      description: Use this endpoint to update a Proof of Service
 tags:
   - name: TRANSACTIONS
   - name: VYALYNK

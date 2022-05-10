@@ -1,0 +1,29 @@
+title: Transaction-Proof-Of-Service
+type: object
+x-tags:
+  - VYALYNK
+  - TRANSACTIONS
+properties:
+  pofs_id:
+    type: string
+    description: The Proof of Service unique identifier. Begins with `pofs-`
+  trxn_id:
+    type: string
+    description: The unique transaction identifier associated with the Proof of Service.
+  shipper:
+    type: string
+    description: 'The Proof of Service shipper. Accepted values are: `1` USPS `2` FedEx, `3` UPS, `4` DHL, `5` Other'
+    enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  tracking_no:
+    type: string
+    description: The shipper tracking number for the Proof of Service.
+  delivery_date:
+    type: string
+    description: The actual or expected delivery date associated with the Proof of Service. Format the date as `YYYY-MM-DD`.
+required:
+  - pofs_id
