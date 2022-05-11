@@ -354,15 +354,189 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Billing-Recurring-Template-Response.yaml
+        '404':
+          description: Not Found
       operationId: get-billing-recurring-templates
-      description: List merchant templates.  Filter results with query parameters
+      description: |-
+        List merchant templates.  Filter results with query parameters.  Multiple query parameter values can be added in the filter separated by a comma.
+
+        Example: `GET ../billing/recurring/templates?mid_id=mid-349348,mid-239823`
+
+        >NOTE: To filter for recurring templates that DO NOT have a value (for example, filter templates that do not have a `mid_id` assignment) set `null` as the parameter value.
+      parameters:
+        - schema:
+            type: string
+            example: mid-34ju2987kkio2974
+          in: query
+          name: mid_id
+          description: Filter results by system submerchant id(s) (starts with `mid-`) or host issued submerchant id(s).
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: Filter recurring templates by name
+        - schema:
+            type: string
+          in: query
+          name: 'description[$iLike]'
+          description: |-
+            Filter recurring template `descriptions` that begins with, ends with or contains specific word or phrase using  operator [$like] for case-sensitive or [$iLike] for case-insensitive searches with wildcard operator `%`.
+
+              EXAMPLES:
+
+              To find all template `descriptions` that start with **Monthly**
+              * case-sensitive = `GET ../billing/recurring/template?description[$like]=Monthly%`
+              * case-insensitive = `GET ../billing/recurring/template?description[$iLike]=monthly%`
+
+              To find all template `descriptions` that end with **Plan**
+
+              * case-sensitive = `GET ../billing/recurring/template?description[$like]=%Plan`
+              * case-insensitive = `GET ../billing/recurring/template?description[$iLike]=%plan`
+
+              To find all template `description`s that contain the word **Gold**
+
+              * case-sensitive = `GET ../billing/recurring/template?description[$like]=%Gold%`
+              * case-insensitive = `GET ../billing/recurring/template?description[$iLike]=%gold%`
+        - schema:
+            type: string
+            enum:
+              - DAY
+              - WEEK
+              - MONTH
+              - YEAR
+              - LDOM
+          in: query
+          name: interval
+          description: Filter results by interval(s)
+        - schema:
+            type: integer
+          in: query
+          name: period
+          description: Filter results by interval period(s)
+        - schema:
+            type: integer
+          in: query
+          name: cycles
+          description: Filter results by number of interval cycle(s)
+        - schema:
+            type: boolean
+          in: query
+          name: renew
+          description: Filter results by renew status
+        - schema:
+            type: string
+          in: query
+          name: cart_id
+          description: Filter results by system cart id(s) (starts with `cart_id`)
+        - schema:
+            type: string
+          in: query
+          name: meta_data.*
+          description: Filter results in the `meta_data` object by key name
+        - schema:
+            type: boolean
+          in: query
+          name: emails.send_receipt
+          description: Filter emails object where `send_receipt` is `true` or `false`
+        - schema:
+            type: boolean
+          in: query
+          name: emails.send_declined
+          description: Filter emails object where `send_declined` is `true` or `false`
+        - schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+              - 2
+              - 3
+              - 4
+            minimum: 0
+            maximum: 5
+          in: query
+          name: emails.send_payment_reminder_days
+          description: Filter emails object for `send_payment_reminder_days`
+        - schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+            minimum: 0
+            maximum: 5
+          in: query
+          name: emails.send_late_notification_days
+          description: Filter emails object for `send_late_notification_days`
+        - schema:
+            type: integer
+            enum:
+              - 0
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+            minimum: 0
+            maximum: 5
+          in: query
+          name: payments.autopay_retries
+          description: Filter payment object for `autopay_retries`
+        - schema:
+            type: boolean
+          in: query
+          name: payment.enable_ach
+          description: Filter payment object where `enable_ach` is `true` or `false`
+        - schema:
+            type: boolean
+          in: query
+          name: payment.enable_autopay
+          description: Filter payment object where `enable_autopay` is `true` or `false`
+        - schema:
+            type: boolean
+          in: query
+          name: payment.require_autopay
+          description: Filter payment object where `require_autopay` is `true` or `false`
+        - schema:
+            type: string
+          in: query
+          name: 'payment.memo[$iLike]'
+          description: |-
+            Filter recurring template `payment.memo`s that begins with, ends with or contains specific word or phrase using  operator [$like] for case-sensitive or [$iLike] for case-insensitive searches with wildcard operator `%`.
+
+              EXAMPLES:
+
+              To find all template `payment.memo`s that start with **Monthly**
+              * case-sensitive = `GET ../billing/recurring/template?payment.memo[$like]=Monthly%`
+              * case-insensitive = `GET ../billing/recurring/template?payment.memo[$iLike]=monthly%`
+
+              To find all template `payment.memo`s that end with **Plan**
+
+              * case-sensitive = `GET ../billing/recurring/template?payment.memo[$like]=%Plan`
+              * case-insensitive = `GET ../billing/recurring/template?payment.memo[$iLike]=%plan`
+
+              To find all template `payment.memo`s that contain the word **Gold**
+
+              * case-sensitive = `GET ../billing/recurring/template?payment.memo[$like]=%Gold%`
+              * case-insensitive = `GET ../billing/recurring/template?payment.memo[$iLike]=%gold%`
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Billing-Recurring-Template-Response.yaml
     post:
       summary: Create a Template
       tags:
         - BILLING
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
       operationId: post-billing-recurring-templates
       description: Create a new template
       requestBody:
@@ -370,6 +544,19 @@ paths:
           application/json:
             schema:
               $ref: ../models/Billing-Recurring-Template.yaml
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - cart_id
+          in: query
+          name: expand
+    parameters: []
   '/recurring/billing/templates/{template_id}':
     parameters:
       - schema:
@@ -389,13 +576,22 @@ paths:
       description: Fetch recurring template by system ID
     patch:
       summary: Patch Template
+      operationId: patch-recurring-billing-templates-template_id
+      description: Patch recurring template
       tags:
         - BILLING
       responses:
         '200':
           description: OK
-      operationId: patch-recurring-billing-templates-template_id
-      description: Patch recurring template
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Billing-Recurring-Template-Response.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Billing-Recurring-Template-Response.yaml
     delete:
       summary: Delete Template
       tags:

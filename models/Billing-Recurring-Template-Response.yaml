@@ -1,0 +1,112 @@
+title: Billing-Recurring-Template-Response
+type: object
+description: Recurring Template Response Model
+properties:
+  id:
+    type: string
+    description: recurring template id
+  mid_id:
+    type: string
+    description: Submerchant that accepts payment from plans created frmo this template
+  name:
+    type: string
+    description: Recurring template name
+  description:
+    type: string
+    description: Recurring template description
+  interval:
+    type: string
+    description: >-
+      Recurring plan interval.  Values are:
+        * DAY
+        * WEEK
+        * MONTH
+        * YEAR
+        * LDOM (Last day of month)
+  period:
+    type: number
+    description: The number of intervals that comprise a billing cycle
+  cycles:
+    type: number
+    description: The number of intervals to bill
+  renew:
+    type: boolean
+    description: Renew the plan when billing interval cycles end
+  cart_id:
+    type: string
+    description: Cart ID pointer assigned to recurring template
+  cart:
+    type: object
+    description: >-
+      Cart details (only provided if query parameter 
+      `expand=cart` was provided with request)
+  payment:
+    type: object
+    properties:
+      memo:
+        type: string
+        description: The recurring plan summary provided on customer emails and payment forms
+      enable_ach:
+        type: boolean
+        description: Accept ACH for payment
+      enable_autopay:
+        type: boolean
+        description: Allow autpayment payments
+      autopay_retries:
+        type: number
+        description: Number of autopay attempts for declined payment
+      require_autopay:
+        type: boolean
+        description: Require autopay only payments
+      invoice_template_id:
+        type: string
+        description: Custom invoice template ID
+      receipt_template_id: 
+        type: string
+        description: Custom receipt template ID
+  emails:
+    type: object
+    properties:
+      send_receipt:
+        type: boolean
+        description: Send receipt for successful autopay payments
+      send_declined:
+        type: boolean
+        description: Send declined notification for autopay payments
+      send_payment_reminder_days:
+        type: number
+        description: Number of days to send email payment reminder before billing cycle payment is due
+      send_late_notification_days:
+        type: number
+        description: Number of days to send email billing cycle payment is past due
+  tags:
+    type: array
+    items:
+      type: string
+    description: Recurring template tags
+  notes:
+    type: array
+    description: Recurring template notes
+  meta_data:
+    type: object
+    description: Recurring template meta-data
+  merchant_id:
+    type: string
+    description: System assigned merchant id
+  updatedAt:
+    type: string
+    description: Last updated time (UTC)
+  createdAt:
+    type: string
+    description: Create time (UTC)
+  last_request_id: >-
+    Request ID
+  is_inactive:
+    type: boolean
+  created_by_id:
+    type: string
+    description: System user ID that created the recurring template
+  updated_by_id:
+    type: string
+    description:  System ID of last user that patched the recurring template
+

@@ -2,7 +2,11 @@ title: Notes
 type: array
 x-tags:
   - COMMON
-description: Notes array model
+description: |-
+  Notes array model.
+
+  NOTE:  When adding a note during a patch operation the system will append the new note to the 
+  notes in the existing array.  There is no need to pass the full note array.  You cannot remove a note from the array.
 items:
   type: object
   description: Note object

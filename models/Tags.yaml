@@ -1,15 +1,13 @@
 type: array
-description: Add up to 10 comma-separated tags
-minItems: 1
+description: |-
+  Add up to 10 comma-separated tags.
+
+  NOTE:  If patching the tag array items you must pass the full array.  You cannot add, edit or remove individual items from the array.
 uniqueItems: true
-x-examples:
-  example-1:
-    - tag1
-    - tag2
-    - tag3
 maxItems: 10
 examples:
-  - - 'tag1, tag2, tag3'
+  - - tag1
+    - tag2
+    - tag3
 items:
   type: string
-  example: 'tag1, tag2, tag3'
