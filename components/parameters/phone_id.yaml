@@ -1,0 +1,9 @@
+name: phone_id
+in: path
+required: true
+schema:
+  type: string
+  example: phone-9jjsuy6352h6syegb
+  pattern: ^phone-
+  maxLength: 30
+description: System identifier for phone.  Starts with `phone-`

@@ -601,7 +601,41 @@ paths:
           description: OK
       operationId: delete-recurring-billing-templates-template_id
       description: Delete recurring template
+  '/card/sale/transactions/{transaction_id}':
+    parameters:
+      - schema:
+          type: string
+        name: transaction_id
+        in: path
+        required: true
+    get:
+      summary: Fetch Transaction
+      tags:
+        - TRANSACTIONS
+      responses: {}
+      operationId: get-card-sale-transactions-transaction_id
 tags:
   - name: TRANSACTIONS
-  - name: BILLING
-  - name: VYALYNK
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage credit card and ACH transactions
+  - name: PROOF OF SERVICE
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage transaction Proof of Service
+  - name: RECURRING PAYMENTS
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage recurring payments
+  - name: INVOICES
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage Invoices
+  - name: PAYMENT FORMS
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage secure payment forms
+  - name: TEMPLATES
+    x-tag-expanded: false
+    description: |
+      > REST Endpoints used to process and manage invocie, form and email templates

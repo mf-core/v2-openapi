@@ -1,0 +1,8 @@
+name: transaction_id
+in: path
+required: true
+schema:
+  type: string
+  example: address-87sju148sjsuy7g
+  maxLength: 30
+description: Host transaction identifier.

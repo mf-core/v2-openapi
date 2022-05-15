@@ -1,0 +1,8 @@
+name: pofs_id
+in: path
+required: true
+schema:
+  type: string
+  example: pofs-23847230948234
+  maxLength: 30
+description: Proof of Service record identifier.  Starts with `pofs-`

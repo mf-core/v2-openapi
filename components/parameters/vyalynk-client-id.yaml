@@ -1,0 +1,7 @@
+name: vyalynk-client-id
+in: header
+required: false
+schema:
+  type: string
+  example: 10852b2b2f57480696e5a4e918b26cc1
+description: Merchant API Key.  Required if JWT Authorization is not provided

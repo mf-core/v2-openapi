@@ -1,0 +1,7 @@
+name: vyalynk-app-id
+in: header
+required: false
+schema:
+  type: string
+  example: APP-T6554252567241061980
+description: Developer Application API Key.  Required if JWT Authorization is not provided

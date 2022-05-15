@@ -1,0 +1,9 @@
+name: template_id
+in: path
+required: true
+schema:
+  type: string
+  example: template-ju237109jsih34h83
+  pattern: ^template-
+  maxLength: 30
+description: System identifier for recurring template.  Starts with `template-`

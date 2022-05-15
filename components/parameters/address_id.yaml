@@ -1,0 +1,9 @@
+name: address_id
+in: path
+required: true
+schema:
+  type: string
+  example: address-87sju148sjsuy7g
+  pattern: ^address-
+  maxLength: 30
+description: System identifier for address.  Starts with `address-`

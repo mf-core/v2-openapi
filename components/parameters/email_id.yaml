@@ -1,0 +1,9 @@
+name: email_id
+in: path
+required: true
+schema:
+  type: string
+  example: email-239kil0op38376ba
+  pattern: ^email-
+  maxLength: 60
+description: System identifier for email.  Starts with `email-`
