@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: 54a9f1865d550
 info:
   title: VyaPay OpenAPI 3.1
   version: '1.0'
