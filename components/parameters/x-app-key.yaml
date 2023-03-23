@@ -1,4 +1,4 @@
-name: vyalynk-app-id
+name: x-app-key
 in: header
 required: false
 schema:
